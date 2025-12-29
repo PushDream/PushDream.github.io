@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Owusu-Debrah Boateng - Technical Support Specialist with expertise in IT infrastructure, cybersecurity, and system reliability. Currently pursuing MA in IT Cyber Security.">
+    <meta name="keywords" content="Technical Support, IT Support, Cybersecurity, SOC Analyst, Linux, ITIL, System Security">
+    <meta name="author" content="Owusu-Debrah Boateng">
+    <title>Owusu-Debrah Boateng | Technical Support & Security</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🛡️</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;500;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --bg-dark: #0a0a0a;
+            --accent: #10b981;
+            --accent-glow: rgba(16, 185, 129, 0.2);
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #d4d4d8;
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1, h2, h3, .font-display {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.04);
+            box-shadow: 0 0 30px var(--accent-glow);
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: #000;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        .nav-link {
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+        }
+
+        .sticky-contact {
+            background: rgba(10, 10, 10, 0.8);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 10px; }
+
+        .badge {
+            font-size: 0.7rem;
+            padding: 2px 10px;
+            border-radius: 9999px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #a1a1aa;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .nav-link-mobile {
+            transition: color 0.2s ease;
+        }
+
+        .nav-link-mobile:hover {
+            color: var(--accent);
+        }
+
+        /* Focus states for accessibility */
+        a:focus-visible, button:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 4px;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--accent);
+            color: #000;
+            padding: 8px 16px;
+            text-decoration: none;
+            z-index: 100;
+            font-weight: bold;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-emerald-500/30 selection:text-emerald-200">
+
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <noscript>
+        <div style="background: #fef3c7; color: #92400e; padding: 1rem; text-align: center; font-size: 0.875rem;">
+            This page works best with JavaScript enabled for smooth animations and navigation.
+        </div>
+    </noscript>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 border-b border-white/5 bg-black/40 backdrop-blur-md">
+        <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="font-display font-bold text-xl tracking-tight text-white">
+                O<span class="text-emerald-500">.</span>B
+            </div>
+            <div class="hidden md:flex space-x-8 text-sm font-medium">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#skills" class="nav-link">Toolkit</a>
+                <a href="#projects" class="nav-link">Case Studies</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <button id="menu-toggle" class="md:hidden text-zinc-400" aria-label="Open menu">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-black z-[60] flex flex-col items-center justify-center space-y-8 text-2xl font-display hidden">
+        <button id="menu-close" class="absolute top-6 right-6 text-zinc-400" aria-label="Close menu">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+        <a href="#about" class="nav-link-mobile mobile-nav-item">About</a>
+        <a href="#experience" class="nav-link-mobile mobile-nav-item">Experience</a>
+        <a href="#skills" class="nav-link-mobile mobile-nav-item">Toolkit</a>
+        <a href="#projects" class="nav-link-mobile mobile-nav-item">Case Studies</a>
+        <a href="#contact" class="nav-link-mobile mobile-nav-item">Contact</a>
+    </div>
+
+    <main id="main-content" class="max-w-5xl mx-auto px-6 pt-32 pb-40">
+        
+        <!-- Hero Section -->
+        <section class="min-h-[60vh] flex flex-col justify-center reveal">
+            <div class="inline-flex items-center space-x-2 bg-white/5 border border-white/10 rounded-full px-3 py-1 mb-8 w-fit">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                <span class="text-[10px] uppercase tracking-widest font-medium text-zinc-400">IT Support / Junior SOC • Lublin / Remote</span>
+            </div>
+            
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-[1.1] font-display">
+                Owusu-Debrah Boateng <br/>
+                <span class="text-zinc-500 italic font-light">Supporting reliable and secure systems.</span>
+            </h1>
+            
+            <p class="text-lg md:text-xl text-zinc-400 max-w-2xl mb-12 leading-relaxed">
+                <span class="text-white font-medium">Technical Support Specialist | MA: IT Cyber Security (UMCS)</span><br/>
+                Experience in troubleshooting infrastructure issues, documenting incidents, and analyzing system behavior in networked environments, with hands-on Linux exposure.
+            </p>
+
+            <div class="flex flex-wrap gap-4 mb-16">
+                <a href="#contact" class="btn-primary px-10 py-4 rounded-xl font-semibold">Contact Me</a>
+                <a href="mailto:payneboat@gmail.com?subject=CV%20Request" class="border border-zinc-800 bg-zinc-900/50 hover:bg-zinc-800 px-10 py-4 rounded-xl font-semibold transition-colors text-white">Request CV</a>
+            </div>
+
+            <!-- Proof Strip -->
+            <div class="pt-8 border-t border-white/5">
+                <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-600 mb-6 font-semibold">Experience with</p>
+                <div class="flex flex-wrap items-center gap-x-10 gap-y-6 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
+                    <span class="text-white font-display font-bold text-xl tracking-tighter">Greenpeace</span>
+                    <span class="text-white font-display font-bold text-xl tracking-tight">European XFEL</span>
+                    <span class="text-white font-display font-medium text-lg tracking-wide">Zendesk</span>
+                    <span class="text-white font-display font-medium text-lg tracking-wide italic">ITIL 4</span>
+                    <span class="text-white font-display font-medium text-lg tracking-wide italic">Linux (Academic)</span>
+                </div>
+            </div>
+            
+            <div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-zinc-500 text-sm">
+                <a href="https://github.com/PushDream" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-500 transition-colors">GitHub</a>
+                <a href="https://www.linkedin.com/in/owusu-boateng/" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-500 transition-colors">LinkedIn</a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-24 border-t border-white/5 reveal">
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="md:col-span-1">
+                    <h2 class="text-2xl font-bold text-white font-display uppercase tracking-widest text-sm opacity-50">Profile</h2>
+                </div>
+                <div class="md:col-span-2">
+                    <p class="text-xl text-zinc-300 leading-relaxed mb-6">
+                        Technical Support professional with experience supporting users in complex digital environments.
+                    </p>
+                    <p class="text-zinc-400 leading-relaxed mb-6">
+                        Skilled in troubleshooting infrastructure-related issues, analyzing system behavior, and resolving incidents in networked environments, with hands-on exposure to Linux-based systems. I focus on service reliability through documentation, pattern analysis, and continuous improvement.
+                    </p>
+                    <p class="text-zinc-400 leading-relaxed">
+                        Currently pursuing an <span class="text-zinc-200">MA: IT Cyber Security</span> at Maria Curie-Skłodowska University, bridging hands-on support with advanced system defense studies.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications -->
+        <section id="certifications" class="py-24 border-t border-white/5 reveal">
+            <h2 class="text-2xl font-bold text-white mb-12 font-display">Certifications</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="glass-card p-6 rounded-xl border border-emerald-500/10 flex items-center space-x-4">
+                    <div class="text-emerald-500 bg-emerald-500/10 p-3 rounded-lg" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-white font-bold">ITIL 4 Foundation</h3>
+                        <p class="text-zinc-500 text-xs">IT Service Management • ID: GR6718437910B</p>
+                    </div>
+                </div>
+                <div class="glass-card p-6 rounded-xl border border-emerald-500/10 flex items-center space-x-4">
+                    <div class="text-emerald-500 bg-emerald-500/10 p-3 rounded-lg" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-award"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/><circle cx="12" cy="8" r="6"/></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-white font-bold">Google IT Support Professional</h3>
+                        <p class="text-zinc-500 text-xs">Issued Jun 2023 • ID: FCG2ZA2F72TN</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Professional History -->
+        <section id="experience" class="py-24 border-t border-white/5 reveal">
+            <h2 class="text-2xl font-bold text-white mb-12 font-display">Experience</h2>
+            
+            <div class="space-y-16">
+                <!-- Greenpeace -->
+                <div class="grid md:grid-cols-4 gap-4 group">
+                    <div class="text-zinc-500 font-mono text-xs uppercase tracking-widest pt-1">Jan 2023 — Sep 2024</div>
+                    <div class="md:col-span-3">
+                        <h3 class="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors">Technical Support</h3>
+                        <p class="text-emerald-500 mb-6 font-medium tracking-tight">Greenpeace Deutschland</p>
+                        <ul class="text-zinc-400 space-y-4 text-sm leading-relaxed">
+                            <li class="flex gap-3"><span class="text-emerald-500 font-bold">/</span> Diagnosed and resolved technical issues for end-users across digital infrastructure.</li>
+                            <li class="flex gap-3"><span class="text-emerald-500 font-bold">/</span> Logged and tracked user-reported bugs, ensuring prompt escalation and documentation.</li>
+                            <li class="flex gap-3"><span class="text-emerald-500 font-bold">/</span> Analyzed user behavior data to recommend reliability and system improvements.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- XFEL Updated -->
+                <div class="grid md:grid-cols-4 gap-4 group">
+                    <div class="text-zinc-500 font-mono text-xs uppercase tracking-widest pt-1">May 2019 — Dec 2023</div>
+                    <div class="md:col-span-3">
+                        <h3 class="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors">Foreign Language Tech Support Assistant</h3>
+                        <p class="text-zinc-500 mb-6 font-medium tracking-tight">European XFEL</p>
+                        <ul class="text-zinc-400 space-y-4 text-sm leading-relaxed">
+                            <li class="flex gap-3"><span class="text-emerald-500 font-bold">/</span> Managed website and internal display updates for accurate information distribution.</li>
+                            <li class="flex gap-3"><span class="text-emerald-500 font-bold">/</span> Provided multi-channel helpdesk support (Phone, Email, In-person).</li>
+                            <li class="flex gap-3"><span class="text-emerald-500 font-bold">/</span> Administered user accounts, databases, and digital records.</li>
+                            <li class="flex gap-3"><span class="text-emerald-500 font-bold">/</span> Authored user manuals, troubleshooting guides, and FAQs.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Phone Research Field -->
+                <div class="grid md:grid-cols-4 gap-4 group">
+                    <div class="text-zinc-500 font-mono text-xs uppercase tracking-widest pt-1">Apr 2018 — Jun 2019</div>
+                    <div class="md:col-span-3">
+                        <h3 class="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors">Market Improvement Researcher</h3>
+                        <p class="text-zinc-500 mb-6 font-medium tracking-tight">Phone Research Field GmbH</p>
+                        <ul class="text-zinc-400 space-y-4 text-sm leading-relaxed">
+                            <li class="flex gap-3"><span class="text-zinc-600 font-bold">/</span> Gathered data for product improvement analysis through specialized technical interviews.</li>
+                            <li class="flex gap-3"><span class="text-zinc-600 font-bold">/</span> Compiled detailed reports for client technology insights.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Toolkit & Education -->
+        <section id="skills" class="py-24 border-t border-white/5 reveal">
+            <div class="grid md:grid-cols-2 gap-16">
+                <!-- Skills -->
+                <div>
+                    <h2 class="text-2xl font-bold text-white mb-8 font-display">Technical Toolkit</h2>
+                    <div class="space-y-8">
+                        <div>
+                            <h4 class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 mb-4 font-bold">Infrastructure & Ops</h4>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="badge">IT Support & Incident Handling</span>
+                                <span class="badge">Linux Systems (Academic Exposure)</span>
+                                <span class="badge text-emerald-400">Log & System Behavior Analysis</span>
+                                <span class="badge">Zendesk</span>
+                                <span class="badge">Bug Tracking & Escalation</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 mb-4 font-bold">Communication & Research</h4>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="badge">Technical Documentation</span>
+                                <span class="badge">Pattern Analysis (User Data)</span>
+                                <span class="badge">Database Mgmt (Basic)</span>
+                                <span class="badge">ITIL 4 Foundation</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education -->
+                <div>
+                    <h2 class="text-2xl font-bold text-white mb-8 font-display">Academic Path</h2>
+                    <div class="space-y-8">
+                        <div class="relative pl-8 border-l border-emerald-500/30">
+                            <div class="absolute w-2 h-2 bg-emerald-500 rounded-full -left-[5px] top-2 shadow-[0_0_10px_#10b981]"></div>
+                            <h4 class="text-white font-bold">MA: IT Cyber Security</h4>
+                            <p class="text-zinc-500 text-sm">UMCS Lublin • Oct 2025 – Present</p>
+                        </div>
+                        <div class="relative pl-8 border-l border-zinc-800">
+                            <div class="absolute w-2 h-2 bg-zinc-700 rounded-full -left-[5px] top-2"></div>
+                            <h4 class="text-white font-bold text-sm">Bachelor of Arts: Digital Media</h4>
+                            <p class="text-zinc-500 text-xs">Leuphana University of Lüneburg</p>
+                        </div>
+                        <div class="relative pl-8 border-l border-zinc-800">
+                            <div class="absolute w-2 h-2 bg-zinc-700 rounded-full -left-[5px] top-2"></div>
+                            <h4 class="text-white font-bold text-sm">BSc: Information Engineering</h4>
+                            <p class="text-zinc-500 text-xs">HAW Hamburg</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Background -->
+        <section id="projects" class="py-24 border-t border-white/5 reveal">
+            <div class="flex items-center justify-between mb-12">
+                <h2 class="text-2xl font-bold text-white font-display">Case Studies</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Project 1 -->
+                <div class="glass-card rounded-2xl p-8 flex flex-col h-full group">
+                    <h3 class="text-xl font-bold text-white mb-4 group-hover:text-emerald-400 transition-colors">
+                        MoodPlant <span class="text-emerald-500/50 mx-2">/</span> System Reliability & Incident Prevention
+                    </h3>
+                    <p class="text-zinc-400 mb-8 text-sm leading-relaxed flex-grow">
+                        Exploration of system state management and backend integration through a case study on cloud triggers and proactive incident prevention in mobile environments.
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex space-x-2">
+                            <span class="badge">Firebase</span>
+                            <span class="badge">Troubleshooting</span>
+                        </div>
+                        <a href="https://moodplant.app" target="_blank" rel="noopener noreferrer" class="text-emerald-500 text-xs font-bold uppercase tracking-widest hover:underline flex items-center">
+                            Visit Live Site
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="glass-card rounded-2xl p-8 flex flex-col h-full group">
+                    <h3 class="text-xl font-bold text-white mb-4 group-hover:text-emerald-400 transition-colors">
+                        Subverse <span class="text-emerald-500/50 mx-2">/</span> Adversarial Trust & Security Implications
+                    </h3>
+                    <p class="text-zinc-400 mb-8 text-sm leading-relaxed flex-grow">
+                        Research into adversarial trust, perception, and the security implications of automated content generation within modern trust models.
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex space-x-2">
+                            <span class="badge">Security Ethics</span>
+                            <span class="badge">Research</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-24 border-t border-white/5 reveal text-center">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 font-display">Ready for the next challenge.</h2>
+            <p class="text-zinc-400 mb-10 max-w-lg mx-auto">
+                Seeking a role where I can apply my support background and cybersecurity training to maintain system integrity.
+            </p>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+                <a href="mailto:payneboat@gmail.com" class="text-white hover:text-emerald-500 text-lg underline decoration-zinc-800 underline-offset-8 transition-all">Email Contact</a>
+                <a href="https://www.linkedin.com/in/owusu-boateng/" target="_blank" rel="noopener noreferrer" class="text-white hover:text-emerald-500 text-lg underline decoration-zinc-800 underline-offset-8 transition-all">LinkedIn Profile</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Sticky Contact Bar -->
+    <div class="fixed bottom-0 w-full z-40 sticky-contact px-6 py-4">
+        <div class="max-w-5xl mx-auto flex items-center justify-between">
+            <div class="hidden sm:block">
+                <p class="text-[10px] uppercase tracking-widest text-zinc-500 font-bold">payneboat@gmail.com</p>
+            </div>
+            <div class="flex items-center space-x-8 text-sm font-medium">
+                <a href="mailto:payneboat@gmail.com" class="text-white hover:text-emerald-500 transition-colors flex items-center">
+                    Email
+                </a>
+                <a href="https://www.linkedin.com/in/owusu-boateng/" target="_blank" rel="noopener noreferrer" class="text-white hover:text-emerald-500 transition-colors flex items-center">
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const reveals = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            reveals.forEach(reveal => {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveal.getBoundingClientRect().top;
+                const elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('active');
+                }
+            });
+        };
+        window.addEventListener('scroll', revealOnScroll);
+        window.onload = revealOnScroll;
+
+        // Mobile menu functionality
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileNavItems = document.querySelectorAll('.mobile-nav-item');
+
+        const closeMobileMenu = () => {
+            mobileMenu.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        };
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+
+        menuClose.addEventListener('click', closeMobileMenu);
+
+        // Close mobile menu when clicking on nav items
+        mobileNavItems.forEach(item => {
+            item.addEventListener('click', closeMobileMenu);
+        });
+    </script>
+
+</body>
+</html>
