@@ -41,8 +41,11 @@
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;500;700&display=swap">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
 
-    <!-- Tailwind CSS with SRI Hash for Supply Chain Security -->
-    <script src="https://cdn.tailwindcss.com" integrity="sha384-OLBgp1GsljhM2TJ+sbHjaiH9txEUvgdDTAzHv2P24donTt6/529l+9Ua0vFImLlb" crossorigin="anonymous"></script>
+    <!-- Tailwind CSS CDN
+         Note: SRI hashes cannot be used with Tailwind CDN as the content is dynamically generated.
+         In production, use a build process with npm to generate static CSS for SRI validation.
+         Current approach accepts the trade-off for development convenience. -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root {
             --bg-dark: #0a0a0a;
