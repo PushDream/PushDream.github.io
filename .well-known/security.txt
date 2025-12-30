@@ -1,0 +1,8 @@
+Contact: mailto:payneboat@gmail.com
+Preferred-Languages: en, de
+Canonical: https://pushdream.github.io/.well-known/security.txt
+Expires: 2026-12-31T23:59:59.000Z
+
+# Security Policy
+# This is a personal portfolio website with no user data collection or processing.
+# If you discover any security issues, please report them responsibly.

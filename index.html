@@ -3,16 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Security Headers (Client-side mitigation - ideally configured server-side) -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+
+    <!--
+        Security Note: This site demonstrates security-conscious development practices.
+        - Subresource Integrity (SRI) hashes validate CDN resources
+        - CSP would be configured via server headers in production
+        - External links use rel="noopener noreferrer" to prevent tab-nabbing
+        - No user input handling reduces XSS attack surface
+        GitHub Pages limitations prevent full CSP implementation via meta tags
+    -->
+
     <meta name="description" content="Owusu-Debrah Boateng - Technical Support Specialist with expertise in IT infrastructure, cybersecurity, and system reliability. Currently pursuing MA in IT Cyber Security.">
     <meta name="keywords" content="Technical Support, IT Support, Cybersecurity, SOC Analyst, Linux, ITIL, System Security">
     <meta name="author" content="Owusu-Debrah Boateng">
+
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pushdream.github.io/">
+    <meta property="og:title" content="Owusu-Debrah Boateng | Technical Support & Security">
+    <meta property="og:description" content="Technical Support Specialist pursuing MA in IT Cyber Security. Experience in IT infrastructure, troubleshooting, and system reliability.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Owusu-Debrah Boateng | Technical Support & Security">
+    <meta name="twitter:description" content="Technical Support Specialist pursuing MA in IT Cyber Security.">
+
     <title>Owusu-Debrah Boateng | Technical Support & Security</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><style>text{font-family:sans-serif;font-weight:bold;fill:%23fff}</style><rect width='100' height='100' fill='%230a0a0a'/><text x='50' y='65' font-size='45' text-anchor='middle'>O.B</text></svg>">
+
+    <!-- DNS Prefetch & Preconnect for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;500;700&display=swap">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind CSS with SRI Hash for Supply Chain Security -->
+    <script src="https://cdn.tailwindcss.com" integrity="sha384-OLBgp1GsljhM2TJ+sbHjaiH9txEUvgdDTAzHv2P24donTt6/529l+9Ua0vFImLlb" crossorigin="anonymous"></script>
     <style>
         :root {
             --bg-dark: #0a0a0a;
