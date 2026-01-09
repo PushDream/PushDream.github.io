@@ -153,38 +153,8 @@
             100% { transform: skew(0deg); }
         }
 
-        /* ENHANCED GLITCH EFFECT */
-        .glitch-text {
-            position: relative;
-        }
-        .glitch-text::before,
-        .glitch-text::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-        }
-        .glitch-text:hover::before {
-            animation: glitch-effect 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
-            color: #00ffff;
-            z-index: -1;
-        }
-        .glitch-text:hover::after {
-            animation: glitch-effect 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both infinite;
-            color: #ff00ff;
-            z-index: -1;
-        }
-        @keyframes glitch-effect {
-            0% { transform: translate(0); opacity: 1; }
-            20% { transform: translate(-2px, 2px); opacity: 0.8; }
-            40% { transform: translate(-2px, -2px); opacity: 0.8; }
-            60% { transform: translate(2px, 2px); opacity: 0.8; }
-            80% { transform: translate(2px, -2px); opacity: 0.8; }
-            100% { transform: translate(0); opacity: 1; }
-        }
+        /* ENHANCED GLITCH EFFECT - DISABLED FOR CLEANER LOOK */
+        /* User prefers subtler effects without RGB split */
 
         /* CRT FLICKER */
         @keyframes flicker {
@@ -408,12 +378,79 @@
             background: var(--neon);
             color: #000;
         }
+        /* MOBILE OPTIMIZATIONS */
         @media (max-width: 768px) {
             .theme-toggle {
                 bottom: 20px;
                 left: 20px;
                 font-size: 8px;
                 padding: 6px 12px;
+            }
+
+            /* Disable heavy effects on mobile for performance */
+            #binary-canvas {
+                opacity: 0.05; /* Reduce intensity */
+            }
+
+            .cursor-trail {
+                display: none; /* Disable cursor trails on mobile */
+            }
+
+            #cursor-main,
+            #cursor-follower {
+                display: none; /* Use default cursor on mobile */
+            }
+
+            body {
+                cursor: auto !important; /* Restore default cursor */
+            }
+
+            .data-stream {
+                display: none; /* Hide data stream on mobile */
+            }
+
+            .scanlines {
+                opacity: 0.3; /* Reduce scanline intensity */
+            }
+
+            /* Reduce animation complexity */
+            .hero-glitch {
+                animation: none;
+            }
+
+            /* Simplify boot screen on mobile */
+            #boot-screen {
+                font-size: 12px;
+                padding: 20px;
+            }
+
+            .boot-line {
+                margin-bottom: 6px;
+            }
+        }
+
+        /* Touch device optimizations */
+        @media (hover: none) {
+            .cursor-trail {
+                display: none;
+            }
+
+            #cursor-main,
+            #cursor-follower {
+                display: none;
+            }
+
+            body {
+                cursor: auto !important;
+            }
+
+            /* Disable hover effects on touch devices */
+            .holo-card:hover {
+                background: linear-gradient(135deg,
+                    rgba(16, 185, 129, 0.1) 0%,
+                    rgba(16, 185, 129, 0.05) 50%,
+                    rgba(139, 92, 246, 0.1) 100%
+                );
             }
         }
     </style>
@@ -750,11 +787,14 @@
     </footer>
 
     <script>
+        // MOBILE DETECTION
+        const isMobile = window.innerWidth <= 768 || 'ontouchstart' in window;
+
         // 1. BINARY RAIN BACKGROUND
         const canvas = document.getElementById('binary-canvas');
         const ctx = canvas.getContext('2d');
         let width, height, columns;
-        const fontSize = 14;
+        const fontSize = isMobile ? 12 : 14;
         const chars = '01';
         let drops = [];
 
@@ -781,7 +821,8 @@
 
         window.addEventListener('resize', resize);
         resize();
-        setInterval(drawBinary, 50);
+        // Slower refresh rate on mobile for better performance
+        setInterval(drawBinary, isMobile ? 100 : 50);
 
         // 1.5. BOOT SCREEN SEQUENCE
         const bootScreen = document.getElementById('boot-screen');
@@ -805,56 +846,60 @@
         document.addEventListener('click', hideBootScreen);
         setTimeout(hideBootScreen, 3500); // Auto-hide after 3.5s
 
-        // 1.6. NEON CURSOR TRAILS
-        let lastTrailTime = 0;
-        document.addEventListener('mousemove', (e) => {
-            const now = Date.now();
-            // Throttle trail creation to every 50ms for performance
-            if (now - lastTrailTime < 50) return;
-            lastTrailTime = now;
+        // 1.6. NEON CURSOR TRAILS (Desktop only)
+        if (!isMobile) {
+            let lastTrailTime = 0;
+            document.addEventListener('mousemove', (e) => {
+                const now = Date.now();
+                // Throttle trail creation to every 50ms for performance
+                if (now - lastTrailTime < 50) return;
+                lastTrailTime = now;
 
-            // Create trail element
-            const trail = document.createElement('div');
-            trail.className = 'cursor-trail';
-            trail.style.left = e.clientX + 'px';
-            trail.style.top = e.clientY + 'px';
-            document.body.appendChild(trail);
+                // Create trail element
+                const trail = document.createElement('div');
+                trail.className = 'cursor-trail';
+                trail.style.left = e.clientX + 'px';
+                trail.style.top = e.clientY + 'px';
+                document.body.appendChild(trail);
 
-            // Remove after animation
-            setTimeout(() => {
-                trail.remove();
-            }, 500);
-        });
-
-        // 1.7. DATA STREAM (Hexadecimal)
-        const dataStream = document.getElementById('data-stream');
-        function generateHexData() {
-            const chars = '0123456789ABCDEF';
-            let result = '';
-            for (let i = 0; i < 2000; i++) {
-                result += chars.charAt(Math.floor(Math.random() * chars.length));
-                if ((i + 1) % 40 === 0) result += '\n';
-            }
-            return result;
-        }
-
-        function updateDataStream() {
-            dataStream.textContent = generateHexData();
-            // Slowly scroll the stream
-            gsap.to(dataStream, {
-                y: '-=20',
-                duration: 1,
-                ease: 'none',
-                onComplete: () => {
-                    if (parseInt(dataStream.style.transform?.match(/-?\d+/) || 0) < -1000) {
-                        dataStream.style.transform = 'translateY(0)';
-                    }
-                }
+                // Remove after animation
+                setTimeout(() => {
+                    trail.remove();
+                }, 500);
             });
         }
 
-        updateDataStream();
-        setInterval(updateDataStream, 2000);
+        // 1.7. DATA STREAM (Hexadecimal - Desktop only)
+        if (!isMobile) {
+            const dataStream = document.getElementById('data-stream');
+            function generateHexData() {
+                const chars = '0123456789ABCDEF';
+                let result = '';
+                for (let i = 0; i < 2000; i++) {
+                    result += chars.charAt(Math.floor(Math.random() * chars.length));
+                    if ((i + 1) % 40 === 0) result += '\n';
+                }
+                return result;
+            }
+
+            function updateDataStream() {
+                dataStream.textContent = generateHexData();
+                // Slowly scroll the stream
+                gsap.to(dataStream, {
+                    y: '-=20',
+                    duration: 1,
+                    ease: 'none',
+                    onComplete: () => {
+                        if (parseInt(dataStream.style.transform?.match(/-?\d+/) || 0) < -1000) {
+                            dataStream.style.transform = 'translateY(0)';
+                        }
+                    }
+                });
+            }
+
+            updateDataStream();
+            setInterval(updateDataStream, 2000);
+        }
 
         // 2. TEXT SCRAMBLE UTILITY
         class TextScramble {
@@ -911,14 +956,16 @@
             }
         }
 
-        // 3. TARGETING CURSOR
-        const cMain = document.getElementById('cursor-main');
-        const cFollower = document.getElementById('cursor-follower');
+        // 3. TARGETING CURSOR (Desktop only)
+        if (!isMobile) {
+            const cMain = document.getElementById('cursor-main');
+            const cFollower = document.getElementById('cursor-follower');
 
-        document.addEventListener('mousemove', (e) => {
-            gsap.to(cMain, { x: e.clientX - 5, y: e.clientY - 5, duration: 0 });
-            gsap.to(cFollower, { x: e.clientX - 20, y: e.clientY - 20, duration: 0.15 });
-        });
+            document.addEventListener('mousemove', (e) => {
+                gsap.to(cMain, { x: e.clientX - 5, y: e.clientY - 5, duration: 0 });
+                gsap.to(cFollower, { x: e.clientX - 20, y: e.clientY - 20, duration: 0.15 });
+            });
+        }
 
         // 4. TERMINAL SIMULATION
         const terminal = document.getElementById('terminal-content');
