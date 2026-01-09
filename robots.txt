@@ -1,0 +1,30 @@
+# robots.txt for boateng.github.io
+# Allowing all crawlers and AI bots full access
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://pushdream.github.io/sitemap.xml
+
+# Allow specific AI crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+# Fast crawl rate for major search engines
+Crawl-delay: 0
