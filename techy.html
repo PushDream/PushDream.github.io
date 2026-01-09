@@ -153,6 +153,177 @@
             100% { transform: skew(0deg); }
         }
 
+        /* ENHANCED GLITCH EFFECT */
+        .glitch-text {
+            position: relative;
+        }
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+        }
+        .glitch-text:hover::before {
+            animation: glitch-effect 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+            color: #00ffff;
+            z-index: -1;
+        }
+        .glitch-text:hover::after {
+            animation: glitch-effect 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both infinite;
+            color: #ff00ff;
+            z-index: -1;
+        }
+        @keyframes glitch-effect {
+            0% { transform: translate(0); opacity: 1; }
+            20% { transform: translate(-2px, 2px); opacity: 0.8; }
+            40% { transform: translate(-2px, -2px); opacity: 0.8; }
+            60% { transform: translate(2px, 2px); opacity: 0.8; }
+            80% { transform: translate(2px, -2px); opacity: 0.8; }
+            100% { transform: translate(0); opacity: 1; }
+        }
+
+        /* CRT FLICKER */
+        @keyframes flicker {
+            0% { opacity: 0.97; }
+            5% { opacity: 0.94; }
+            10% { opacity: 0.98; }
+            15% { opacity: 0.95; }
+            20% { opacity: 0.97; }
+            100% { opacity: 1; }
+        }
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: rgba(18, 16, 16, 0.1);
+            opacity: 0;
+            z-index: 9997;
+            pointer-events: none;
+            animation: flicker 0.15s infinite;
+        }
+
+        /* HOLOGRAPHIC SHIFT */
+        .holo-card {
+            background: linear-gradient(135deg,
+                rgba(16, 185, 129, 0.1) 0%,
+                rgba(16, 185, 129, 0.05) 50%,
+                rgba(139, 92, 246, 0.1) 100%
+            );
+            transition: all 0.5s ease;
+        }
+        .holo-card:hover {
+            background: linear-gradient(135deg,
+                rgba(139, 92, 246, 0.1) 0%,
+                rgba(16, 185, 129, 0.05) 50%,
+                rgba(16, 185, 129, 0.1) 100%
+            );
+        }
+
+        /* NEON TRAIL */
+        .cursor-trail {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: var(--neon);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            box-shadow: 0 0 10px var(--neon);
+            opacity: 0;
+            animation: trail-fade 0.5s ease-out forwards;
+        }
+        @keyframes trail-fade {
+            0% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(0); }
+        }
+
+        /* HEXADECIMAL COUNTER */
+        .hex-counter {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: var(--neon);
+            letter-spacing: 2px;
+        }
+
+        /* BOOT SCREEN */
+        #boot-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            color: var(--neon);
+            overflow: hidden;
+        }
+        .boot-line {
+            margin-bottom: 8px;
+            opacity: 0;
+            animation: boot-fadein 0.3s forwards;
+        }
+        @keyframes boot-fadein {
+            to { opacity: 1; }
+        }
+
+        /* DATA STREAM */
+        .data-stream {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 100%;
+            overflow: hidden;
+            opacity: 0.1;
+            z-index: -1;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: var(--neon);
+            line-height: 1.2;
+            pointer-events: none;
+        }
+
+        /* TYPING CURSOR */
+        .typing-cursor::after {
+            content: '▮';
+            animation: blink 1s infinite;
+            color: var(--neon);
+        }
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+
+        /* RADAR PING */
+        @keyframes radar-ping {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(3); opacity: 0; }
+        }
+        .radar-ping::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid var(--neon);
+            animation: radar-ping 2s ease-out infinite;
+        }
+
         .status-tag {
             background: rgba(16, 185, 129, 0.1);
             border-left: 4px solid var(--neon);
@@ -249,6 +420,23 @@
 </head>
 <body>
 
+    <!-- BOOT SEQUENCE SCREEN -->
+    <div id="boot-screen">
+        <div class="boot-line" style="animation-delay: 0s;">> BOATENG SECURITY SYSTEMS v2.0.26</div>
+        <div class="boot-line" style="animation-delay: 0.3s;">> Initializing core modules...</div>
+        <div class="boot-line" style="animation-delay: 0.6s;">> Loading security protocols... [OK]</div>
+        <div class="boot-line" style="animation-delay: 0.9s;">> Establishing secure connection... [OK]</div>
+        <div class="boot-line" style="animation-delay: 1.2s;">> Verifying credentials: OWUSU_BOATENG... [AUTHENTICATED]</div>
+        <div class="boot-line" style="animation-delay: 1.5s;">> Loading professional experience database... [OK]</div>
+        <div class="boot-line" style="animation-delay: 1.8s;">> Mounting ITIL 4 framework... [OK]</div>
+        <div class="boot-line" style="animation-delay: 2.1s;">> Activating cyber defense systems... [OK]</div>
+        <div class="boot-line" style="animation-delay: 2.4s;">> System ready. Welcome, visitor.</div>
+        <div class="boot-line typing-cursor" style="animation-delay: 2.7s;">> Press any key to continue</div>
+    </div>
+
+    <!-- DATA STREAM -->
+    <div class="data-stream" id="data-stream"></div>
+
     <div class="noise"></div>
     <div class="scanlines"></div>
     <canvas id="binary-canvas"></canvas>
@@ -294,7 +482,7 @@
             </div>
 
             <h1 class="font-display text-5xl md:text-8xl font-bold leading-[0.9] mb-6">
-                <span class="hero-glitch scramble-text" data-value="Owusu-Debrah Boateng">Owusu-Debrah Boateng</span>
+                <span class="hero-glitch scramble-text glitch-text" data-value="Owusu-Debrah Boateng" data-text="Owusu-Debrah Boateng">Owusu-Debrah Boateng</span>
             </h1>
 
             <div class="grid md:grid-cols-2 items-end gap-12">
@@ -333,7 +521,7 @@
             <div class="grid md:grid-cols-2 gap-24 items-center">
                 <div class="reveal">
                     <div class="text-emerald-500 mb-4 font-mono text-sm tracking-widest">// CORE_PROCESS</div>
-                    <h2 class="font-display text-4xl md:text-6xl font-bold mb-10 scramble-text" data-value="PROFILE">PROFILE</h2>
+                    <h2 class="font-display text-4xl md:text-6xl font-bold mb-10 scramble-text glitch-text" data-value="PROFILE" data-text="PROFILE">PROFILE</h2>
                     <p class="text-xl text-zinc-300 leading-relaxed mb-6">
                         Technical Support professional with experience supporting users in complex digital environments.
                     </p>
@@ -362,16 +550,16 @@
 
         <!-- CERTIFICATIONS -->
         <section id="certifications" class="py-24 px-10 md:px-32 bg-zinc-950/20">
-            <h2 class="font-display text-4xl font-bold mb-12 scramble-text" data-value="CERTIFICATIONS">CERTIFICATIONS</h2>
+            <h2 class="font-display text-4xl font-bold mb-12 scramble-text glitch-text" data-value="CERTIFICATIONS" data-text="CERTIFICATIONS">CERTIFICATIONS</h2>
             <div class="grid md:grid-cols-2 gap-6">
-                <div class="tech-box p-8 flex items-center space-x-4 group">
+                <div class="tech-box holo-card p-8 flex items-center space-x-4 group">
                     <div class="text-emerald-500 text-4xl font-bold font-mono">01</div>
                     <div>
                         <h3 class="text-white font-bold text-lg">ITIL 4 Foundation</h3>
                         <p class="text-zinc-500 text-xs font-mono">IT Service Management • ID: GR6718437910B</p>
                     </div>
                 </div>
-                <div class="tech-box p-8 flex items-center space-x-4 group">
+                <div class="tech-box holo-card p-8 flex items-center space-x-4 group">
                     <div class="text-emerald-500 text-4xl font-bold font-mono">02</div>
                     <div>
                         <h3 class="text-white font-bold text-lg">Google IT Support Professional</h3>
@@ -383,7 +571,7 @@
 
         <!-- EXPERIENCE -->
         <section id="experience" class="py-40 px-10 md:px-32">
-            <h2 class="font-display text-5xl font-bold mb-20 scramble-text" data-value="ACCESS_LOGS">ACCESS_LOGS</h2>
+            <h2 class="font-display text-5xl font-bold mb-20 scramble-text glitch-text" data-value="ACCESS_LOGS" data-text="ACCESS_LOGS">ACCESS_LOGS</h2>
 
             <div class="space-y-4">
                 <!-- Greenpeace -->
@@ -444,7 +632,7 @@
             <div class="grid md:grid-cols-2 gap-24">
                 <!-- Skills -->
                 <div class="reveal">
-                    <h2 class="font-display text-4xl font-bold mb-12 scramble-text" data-value="TECHNICAL_TOOLKIT">TECHNICAL_TOOLKIT</h2>
+                    <h2 class="font-display text-4xl font-bold mb-12 scramble-text glitch-text" data-value="TECHNICAL_TOOLKIT" data-text="TECHNICAL_TOOLKIT">TECHNICAL_TOOLKIT</h2>
                     <div class="space-y-8">
                         <div>
                             <h4 class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 mb-4 font-bold">// INFRASTRUCTURE & OPS</h4>
@@ -470,7 +658,7 @@
 
                 <!-- Education -->
                 <div class="reveal">
-                    <h2 class="font-display text-4xl font-bold mb-12 scramble-text" data-value="ACADEMIC_PATH">ACADEMIC_PATH</h2>
+                    <h2 class="font-display text-4xl font-bold mb-12 scramble-text glitch-text" data-value="ACADEMIC_PATH" data-text="ACADEMIC_PATH">ACADEMIC_PATH</h2>
                     <div class="space-y-8">
                         <div class="tech-box p-6 border-l-4 border-emerald-500">
                             <div class="text-emerald-500 font-mono text-xs mb-2">[ ACTIVE ]</div>
@@ -494,11 +682,11 @@
 
         <!-- CASE STUDIES / PROJECTS -->
         <section id="projects" class="py-40 px-10 md:px-32">
-            <h2 class="font-display text-5xl font-bold mb-20 scramble-text" data-value="CASE_STUDIES">CASE_STUDIES</h2>
+            <h2 class="font-display text-5xl font-bold mb-20 scramble-text glitch-text" data-value="CASE_STUDIES" data-text="CASE_STUDIES">CASE_STUDIES</h2>
 
             <div class="grid md:grid-cols-2 gap-8">
                 <!-- Project 1: MoodPlant -->
-                <div class="tech-box p-8 flex flex-col h-full group reveal">
+                <div class="tech-box holo-card p-8 flex flex-col h-full group reveal">
                     <div class="text-emerald-500 font-mono text-xs mb-4">[ PROJECT_01 ]</div>
                     <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-emerald-400 transition-colors font-display">
                         MoodPlant <span class="text-emerald-500/50 mx-2">//</span> System Reliability
@@ -518,7 +706,7 @@
                 </div>
 
                 <!-- Project 2: Subverse -->
-                <div class="tech-box p-8 flex flex-col h-full group reveal">
+                <div class="tech-box holo-card p-8 flex flex-col h-full group reveal">
                     <div class="text-emerald-500 font-mono text-xs mb-4">[ PROJECT_02 ]</div>
                     <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-emerald-400 transition-colors font-display">
                         Subverse <span class="text-emerald-500/50 mx-2">//</span> Adversarial Trust
@@ -539,7 +727,7 @@
         <!-- CONTACT -->
         <section id="contact" class="py-60 px-10 md:px-32 text-center relative overflow-hidden">
             <div class="reveal relative z-10">
-                <h2 class="font-display text-4xl md:text-[7rem] font-bold mb-12 scramble-text" data-value="INIT_LINK">INIT_LINK</h2>
+                <h2 class="font-display text-4xl md:text-[7rem] font-bold mb-12 scramble-text glitch-text" data-value="INIT_LINK" data-text="INIT_LINK">INIT_LINK</h2>
                 <p class="text-zinc-500 max-w-lg mx-auto mb-20 font-mono text-sm leading-relaxed">
                     Seeking a role where I can apply my support background and cybersecurity training to maintain system integrity.
                 </p>
@@ -594,6 +782,79 @@
         window.addEventListener('resize', resize);
         resize();
         setInterval(drawBinary, 50);
+
+        // 1.5. BOOT SCREEN SEQUENCE
+        const bootScreen = document.getElementById('boot-screen');
+        let bootComplete = false;
+
+        // Hide boot screen on any key press or after timeout
+        function hideBootScreen() {
+            if (!bootComplete) {
+                bootComplete = true;
+                gsap.to(bootScreen, {
+                    opacity: 0,
+                    duration: 0.5,
+                    onComplete: () => {
+                        bootScreen.style.display = 'none';
+                    }
+                });
+            }
+        }
+
+        document.addEventListener('keydown', hideBootScreen);
+        document.addEventListener('click', hideBootScreen);
+        setTimeout(hideBootScreen, 3500); // Auto-hide after 3.5s
+
+        // 1.6. NEON CURSOR TRAILS
+        let lastTrailTime = 0;
+        document.addEventListener('mousemove', (e) => {
+            const now = Date.now();
+            // Throttle trail creation to every 50ms for performance
+            if (now - lastTrailTime < 50) return;
+            lastTrailTime = now;
+
+            // Create trail element
+            const trail = document.createElement('div');
+            trail.className = 'cursor-trail';
+            trail.style.left = e.clientX + 'px';
+            trail.style.top = e.clientY + 'px';
+            document.body.appendChild(trail);
+
+            // Remove after animation
+            setTimeout(() => {
+                trail.remove();
+            }, 500);
+        });
+
+        // 1.7. DATA STREAM (Hexadecimal)
+        const dataStream = document.getElementById('data-stream');
+        function generateHexData() {
+            const chars = '0123456789ABCDEF';
+            let result = '';
+            for (let i = 0; i < 2000; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
+                if ((i + 1) % 40 === 0) result += '\n';
+            }
+            return result;
+        }
+
+        function updateDataStream() {
+            dataStream.textContent = generateHexData();
+            // Slowly scroll the stream
+            gsap.to(dataStream, {
+                y: '-=20',
+                duration: 1,
+                ease: 'none',
+                onComplete: () => {
+                    if (parseInt(dataStream.style.transform?.match(/-?\d+/) || 0) < -1000) {
+                        dataStream.style.transform = 'translateY(0)';
+                    }
+                }
+            });
+        }
+
+        updateDataStream();
+        setInterval(updateDataStream, 2000);
 
         // 2. TEXT SCRAMBLE UTILITY
         class TextScramble {
