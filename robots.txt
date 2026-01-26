@@ -5,7 +5,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://pushdream.github.io/sitemap.xml
+Sitemap: https://owusuboateng.me/sitemap.xml
 
 # Allow specific AI crawlers
 User-agent: GPTBot
