@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,15 +18,18 @@
         GitHub Pages limitations prevent full CSP implementation via meta tags
     -->
 
-    <meta name="description" content="Owusu-Debrah Boateng - Technical Support Specialist with expertise in IT infrastructure, cybersecurity, and system reliability. Currently pursuing MA in IT Cyber Security.">
-    <meta name="keywords" content="Technical Support, IT Support, Cybersecurity, SOC Analyst, Linux, ITIL, System Security">
+    <meta name="description"
+        content="Owusu-Debrah Boateng - Technical Support Specialist with expertise in IT infrastructure, cybersecurity, and system reliability. Currently pursuing MA in IT Cyber Security.">
+    <meta name="keywords"
+        content="Technical Support, IT Support, Cybersecurity, SOC Analyst, Linux, ITIL, System Security">
     <meta name="author" content="Owusu-Debrah Boateng">
 
     <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://owusuboateng.me/techy.html">
     <meta property="og:title" content="Owusu-Debrah Boateng | Technical Support & Security [Techy Mode]">
-    <meta property="og:description" content="Technical Support Specialist pursuing MA in IT Cyber Security. Experience in IT infrastructure, troubleshooting, and system reliability.">
+    <meta property="og:description"
+        content="Technical Support Specialist pursuing MA in IT Cyber Security. Experience in IT infrastructure, troubleshooting, and system reliability.">
     <meta property="og:site_name" content="Owusu-Debrah Boateng Portfolio">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Owusu-Debrah Boateng | Technical Support & Security">
@@ -36,12 +40,15 @@
     <link rel="canonical" href="https://owusuboateng.me/techy.html">
 
     <title>BOATENG // SYS-DEFENSE // V2.0</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><style>text{font-family:sans-serif;font-weight:bold;fill:%23fff}</style><rect width='100' height='100' fill='%230a0a0a'/><text x='50' y='65' font-size='45' text-anchor='middle'>O.B</text></svg>">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><style>text{font-family:sans-serif;font-weight:bold;fill:%23fff}</style><rect width='100' height='100' fill='%230a0a0a'/><text x='50' y='65' font-size='45' text-anchor='middle'>O.B</text></svg>">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;700&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --neon: #10b981;
@@ -57,12 +64,17 @@
             cursor: none;
         }
 
-        .font-display { font-family: 'Space Grotesk', sans-serif; }
+        .font-display {
+            font-family: 'Space Grotesk', sans-serif;
+        }
 
         /* Noise & Scanlines */
         .noise {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: url('https://grainy-gradients.vercel.app/noise.svg');
             opacity: 0.05;
             pointer-events: none;
@@ -71,7 +83,10 @@
 
         .scanlines {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
             background-size: 100% 4px;
             pointer-events: none;
@@ -81,7 +96,8 @@
         /* Custom Cursor Reticle */
         #cursor-main {
             position: fixed;
-            width: 10px; height: 10px;
+            width: 10px;
+            height: 10px;
             background: var(--neon);
             border-radius: 50%;
             pointer-events: none;
@@ -91,7 +107,8 @@
 
         #cursor-follower {
             position: fixed;
-            width: 40px; height: 40px;
+            width: 40px;
+            height: 40px;
             border: 1px solid var(--neon);
             border-radius: 50%;
             pointer-events: none;
@@ -102,44 +119,58 @@
             justify-content: center;
         }
 
-        #cursor-follower::after, #cursor-follower::before {
+        #cursor-follower::after,
+        #cursor-follower::before {
             content: '';
             position: absolute;
             background: var(--neon);
         }
-        #cursor-follower::after { width: 100%; height: 1px; }
-        #cursor-follower::before { width: 1px; height: 100%; }
+
+        #cursor-follower::after {
+            width: 100%;
+            height: 1px;
+        }
+
+        #cursor-follower::before {
+            width: 1px;
+            height: 100%;
+        }
 
         /* Binary Rain Canvas */
         #binary-canvas {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: -2;
             opacity: 0.15;
         }
 
         .grid-bg {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background-image: linear-gradient(rgba(16, 185, 129, 0.05) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(16, 185, 129, 0.05) 1px, transparent 1px);
+                linear-gradient(90deg, rgba(16, 185, 129, 0.05) 1px, transparent 1px);
             background-size: 50px 50px;
             z-index: -1;
         }
 
         /* Tech-Notched Corners */
         .tech-box {
-            clip-path: polygon(
-                0% 20px, 20px 0%,
-                calc(100% - 20px) 0%, 100% 20px,
-                100% calc(100% - 20px), calc(100% - 20px) 100%,
-                20px 100%, 0% calc(100% - 20px)
-            );
+            clip-path: polygon(0% 20px, 20px 0%,
+                    calc(100% - 20px) 0%, 100% 20px,
+                    100% calc(100% - 20px), calc(100% - 20px) 100%,
+                    20px 100%, 0% calc(100% - 20px));
             border: 1px solid rgba(16, 185, 129, 0.2);
             background: rgba(10, 10, 10, 0.6);
             backdrop-filter: blur(10px);
             transition: all 0.4s ease;
         }
+
         .tech-box:hover {
             border-color: var(--neon);
             background: rgba(16, 185, 129, 0.05);
@@ -151,11 +182,25 @@
         }
 
         @keyframes glitch-anim {
-            0% { transform: skew(0deg); }
-            2% { transform: skew(3deg); }
-            4% { transform: skew(-2deg); }
-            5% { transform: skew(0deg); }
-            100% { transform: skew(0deg); }
+            0% {
+                transform: skew(0deg);
+            }
+
+            2% {
+                transform: skew(3deg);
+            }
+
+            4% {
+                transform: skew(-2deg);
+            }
+
+            5% {
+                transform: skew(0deg);
+            }
+
+            100% {
+                transform: skew(0deg);
+            }
         }
 
         /* ENHANCED GLITCH EFFECT - DISABLED FOR CLEANER LOOK */
@@ -163,13 +208,31 @@
 
         /* CRT FLICKER */
         @keyframes flicker {
-            0% { opacity: 0.97; }
-            5% { opacity: 0.94; }
-            10% { opacity: 0.98; }
-            15% { opacity: 0.95; }
-            20% { opacity: 0.97; }
-            100% { opacity: 1; }
+            0% {
+                opacity: 0.97;
+            }
+
+            5% {
+                opacity: 0.94;
+            }
+
+            10% {
+                opacity: 0.98;
+            }
+
+            15% {
+                opacity: 0.95;
+            }
+
+            20% {
+                opacity: 0.97;
+            }
+
+            100% {
+                opacity: 1;
+            }
         }
+
         body::before {
             content: " ";
             display: block;
@@ -188,18 +251,69 @@
         /* HOLOGRAPHIC SHIFT */
         .holo-card {
             background: linear-gradient(135deg,
-                rgba(16, 185, 129, 0.1) 0%,
-                rgba(16, 185, 129, 0.05) 50%,
-                rgba(139, 92, 246, 0.1) 100%
-            );
+                    rgba(16, 185, 129, 0.1) 0%,
+                    rgba(16, 185, 129, 0.05) 50%,
+                    rgba(139, 92, 246, 0.1) 100%);
             transition: all 0.5s ease;
         }
+
         .holo-card:hover {
             background: linear-gradient(135deg,
-                rgba(139, 92, 246, 0.1) 0%,
-                rgba(16, 185, 129, 0.05) 50%,
-                rgba(16, 185, 129, 0.1) 100%
-            );
+                    rgba(139, 92, 246, 0.1) 0%,
+                    rgba(16, 185, 129, 0.05) 50%,
+                    rgba(16, 185, 129, 0.1) 100%);
+        }
+
+        /* Shake Animation for Konami Code */
+        @keyframes shake {
+            0% {
+                transform: translate(1px, 1px) rotate(0deg);
+            }
+
+            10% {
+                transform: translate(-1px, -2px) rotate(-1deg);
+            }
+
+            20% {
+                transform: translate(-3px, 0px) rotate(1deg);
+            }
+
+            30% {
+                transform: translate(3px, 2px) rotate(0deg);
+            }
+
+            40% {
+                transform: translate(1px, -1px) rotate(1deg);
+            }
+
+            50% {
+                transform: translate(-1px, 2px) rotate(-1deg);
+            }
+
+            60% {
+                transform: translate(-3px, 1px) rotate(0deg);
+            }
+
+            70% {
+                transform: translate(3px, 1px) rotate(-1deg);
+            }
+
+            80% {
+                transform: translate(-1px, -1px) rotate(1deg);
+            }
+
+            90% {
+                transform: translate(1px, 2px) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(1px, -2px) rotate(-1deg);
+            }
+        }
+
+        .shake {
+            animation: shake 0.5s;
+            animation-iteration-count: infinite;
         }
 
         /* NEON TRAIL */
@@ -215,9 +329,17 @@
             opacity: 0;
             animation: trail-fade 0.5s ease-out forwards;
         }
+
         @keyframes trail-fade {
-            0% { opacity: 1; transform: scale(1); }
-            100% { opacity: 0; transform: scale(0); }
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(0);
+            }
         }
 
         /* HEXADECIMAL COUNTER */
@@ -247,13 +369,17 @@
             color: var(--neon);
             overflow: hidden;
         }
+
         .boot-line {
             margin-bottom: 8px;
             opacity: 0;
             animation: boot-fadein 0.3s forwards;
         }
+
         @keyframes boot-fadein {
-            to { opacity: 1; }
+            to {
+                opacity: 1;
+            }
         }
 
         /* DATA STREAM */
@@ -279,16 +405,33 @@
             animation: blink 1s infinite;
             color: var(--neon);
         }
+
         @keyframes blink {
-            0%, 49% { opacity: 1; }
-            50%, 100% { opacity: 0; }
+
+            0%,
+            49% {
+                opacity: 1;
+            }
+
+            50%,
+            100% {
+                opacity: 0;
+            }
         }
 
         /* RADAR PING */
         @keyframes radar-ping {
-            0% { transform: scale(1); opacity: 1; }
-            100% { transform: scale(3); opacity: 0; }
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(3);
+                opacity: 0;
+            }
         }
+
         .radar-ping::before {
             content: '';
             position: absolute;
@@ -312,7 +455,8 @@
         /* Scroll Progress HUD */
         #hud-scroll {
             position: fixed;
-            right: 40px; top: 50%;
+            right: 40px;
+            top: 50%;
             transform: translateY(-50%);
             display: flex;
             flex-direction: column;
@@ -320,11 +464,14 @@
             gap: 20px;
             z-index: 100;
         }
+
         .scroll-dot {
-            width: 4px; height: 4px;
+            width: 4px;
+            height: 4px;
             background: #333;
             transition: all 0.3s ease;
         }
+
         .scroll-dot.active {
             background: var(--neon);
             box-shadow: 0 0 10px var(--neon);
@@ -338,10 +485,24 @@
             display: flex;
             gap: 8px;
         }
-        .dot { width: 8px; height: 8px; border-radius: 50%; }
-        .red { background: #ff5f56; }
-        .yellow { background: #ffbd2e; }
-        .green { background: #27c93f; }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .red {
+            background: #ff5f56;
+        }
+
+        .yellow {
+            background: #ffbd2e;
+        }
+
+        .green {
+            background: #27c93f;
+        }
 
         .terminal-body {
             height: 200px;
@@ -350,10 +511,19 @@
             font-size: 12px;
             color: #888;
         }
-        .terminal-line { margin-bottom: 4px; }
-        .terminal-line.cmd { color: var(--neon); }
 
-        .magnetic-wrap { display: inline-block; transition: transform 0.2s ease; }
+        .terminal-line {
+            margin-bottom: 4px;
+        }
+
+        .terminal-line.cmd {
+            color: var(--neon);
+        }
+
+        .magnetic-wrap {
+            display: inline-block;
+            transition: transform 0.2s ease;
+        }
 
         .badge {
             font-size: 0.7rem;
@@ -379,10 +549,12 @@
             transition: all 0.3s ease;
             cursor: pointer;
         }
+
         .theme-toggle:hover {
             background: var(--neon);
             color: #000;
         }
+
         /* MOBILE OPTIMIZATIONS */
         @media (max-width: 768px) {
             .theme-toggle {
@@ -394,28 +566,34 @@
 
             /* Disable heavy effects on mobile for performance */
             #binary-canvas {
-                opacity: 0.05; /* Reduce intensity */
+                opacity: 0.05;
+                /* Reduce intensity */
             }
 
             .cursor-trail {
-                display: none; /* Disable cursor trails on mobile */
+                display: none;
+                /* Disable cursor trails on mobile */
             }
 
             #cursor-main,
             #cursor-follower {
-                display: none; /* Use default cursor on mobile */
+                display: none;
+                /* Use default cursor on mobile */
             }
 
             body {
-                cursor: auto !important; /* Restore default cursor */
+                cursor: auto !important;
+                /* Restore default cursor */
             }
 
             .data-stream {
-                display: none; /* Hide data stream on mobile */
+                display: none;
+                /* Hide data stream on mobile */
             }
 
             .scanlines {
-                opacity: 0.3; /* Reduce scanline intensity */
+                opacity: 0.3;
+                /* Reduce scanline intensity */
             }
 
             /* Reduce animation complexity */
@@ -437,7 +615,8 @@
         /* Extra small screens - name responsiveness */
         @media (max-width: 640px) {
             #hero h1 {
-                font-size: 2.5rem !important; /* Smaller than text-5xl */
+                font-size: 2.5rem !important;
+                /* Smaller than text-5xl */
                 line-height: 1.1;
                 word-break: break-word;
                 hyphens: manual;
@@ -470,14 +649,14 @@
             /* Disable hover effects on touch devices */
             .holo-card:hover {
                 background: linear-gradient(135deg,
-                    rgba(16, 185, 129, 0.1) 0%,
-                    rgba(16, 185, 129, 0.05) 50%,
-                    rgba(139, 92, 246, 0.1) 100%
-                );
+                        rgba(16, 185, 129, 0.1) 0%,
+                        rgba(16, 185, 129, 0.05) 50%,
+                        rgba(139, 92, 246, 0.1) 100%);
             }
         }
     </style>
 </head>
+
 <body>
 
     <!-- BOOT SEQUENCE SCREEN -->
@@ -486,7 +665,8 @@
         <div class="boot-line" style="animation-delay: 0.3s;">> Initializing core modules...</div>
         <div class="boot-line" style="animation-delay: 0.6s;">> Loading security protocols... [OK]</div>
         <div class="boot-line" style="animation-delay: 0.9s;">> Establishing secure connection... [OK]</div>
-        <div class="boot-line" style="animation-delay: 1.2s;">> Verifying credentials: OWUSU_BOATENG... [AUTHENTICATED]</div>
+        <div class="boot-line" style="animation-delay: 1.2s;">> Verifying credentials: OWUSU_BOATENG... [AUTHENTICATED]
+        </div>
         <div class="boot-line" style="animation-delay: 1.5s;">> Loading professional experience database... [OK]</div>
         <div class="boot-line" style="animation-delay: 1.8s;">> Mounting ITIL 4 framework... [OK]</div>
         <div class="boot-line" style="animation-delay: 2.1s;">> Activating cyber defense systems... [OK]</div>
@@ -520,7 +700,8 @@
 
     <!-- Header / HUD -->
     <header class="fixed top-0 left-0 w-full p-8 z-[100] flex justify-between items-center mix-blend-difference">
-        <div class="font-display font-bold text-2xl tracking-tighter hover:text-emerald-500 transition-all cursor-pointer">
+        <div
+            class="font-display font-bold text-2xl tracking-tighter hover:text-emerald-500 transition-all cursor-pointer">
             O<span class="text-emerald-500">.</span>B<span class="animate-pulse text-emerald-500 ml-1">_</span>
         </div>
         <div class="hidden md:flex space-x-12 text-[10px] tracking-[0.4em] font-bold uppercase opacity-60">
@@ -542,14 +723,17 @@
             </div>
 
             <h1 class="font-display text-5xl md:text-8xl font-bold leading-[0.9] mb-6">
-                <span class="hero-glitch scramble-text glitch-text" data-value="Owusu-Debrah Boateng" data-text="Owusu-Debrah Boateng">Owusu-Debrah Boateng</span>
+                <span class="hero-glitch scramble-text glitch-text" data-value="Owusu-Debrah Boateng"
+                    data-text="Owusu-Debrah Boateng">Owusu-Debrah Boateng</span>
             </h1>
 
             <div class="grid md:grid-cols-2 items-end gap-12">
                 <div class="relative">
                     <p class="text-zinc-400 text-lg border-l-4 border-emerald-500 pl-8 max-w-lg leading-relaxed">
-                        <span class="text-white font-bold">Technical Support Specialist | MA: IT Cyber Security (UMCS)</span><br>
-                        Experience in troubleshooting infrastructure issues, documenting incidents, and analyzing system behavior in networked environments, with hands-on Linux exposure.
+                        <span class="text-white font-bold">Technical Support Specialist | MA: IT Cyber Security
+                            (UMCS)</span><br>
+                        Experience in troubleshooting infrastructure issues, documenting incidents, and analyzing system
+                        behavior in networked environments, with hands-on Linux exposure.
                     </p>
                 </div>
 
@@ -557,21 +741,26 @@
                     <div class="text-[10px] text-emerald-500/50 font-mono">LAT: 51.2465 // LON: 22.5684</div>
                     <div class="font-mono text-4xl font-bold text-white tracking-tighter" id="hud-clock">00:00:00</div>
                     <div class="flex gap-4 mt-6">
-                        <a href="#contact" class="px-10 py-4 bg-emerald-500 text-black font-bold text-sm hover:bg-emerald-400 transition-all">CONTACT_ME</a>
-                        <a href="cv.pdf" download class="px-10 py-4 border border-zinc-800 hover:border-emerald-500 text-white font-bold text-sm transition-all">DOWNLOAD_CV</a>
+                        <a href="#contact"
+                            class="px-10 py-4 bg-emerald-500 text-black font-bold text-sm hover:bg-emerald-400 transition-all">CONTACT_ME</a>
+                        <a href="cv.pdf" download
+                            class="px-10 py-4 border border-zinc-800 hover:border-emerald-500 text-white font-bold text-sm transition-all">DOWNLOAD_CV</a>
                     </div>
                 </div>
             </div>
 
             <!-- Proof Strip -->
             <div class="mt-20 pt-8 border-t border-white/5">
-                <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-600 mb-6 font-semibold">// EXPERIENCE_WITH</p>
-                <div class="flex flex-wrap items-center gap-x-10 gap-y-6 opacity-40 hover:opacity-100 transition-all duration-500">
+                <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-600 mb-6 font-semibold">// EXPERIENCE_WITH
+                </p>
+                <div
+                    class="flex flex-wrap items-center gap-x-10 gap-y-6 opacity-40 hover:opacity-100 transition-all duration-500">
                     <span class="text-white font-display font-bold text-xl tracking-tighter">Greenpeace</span>
                     <span class="text-white font-display font-bold text-xl tracking-tight">European XFEL</span>
                     <span class="text-white font-display font-medium text-lg tracking-wide">Zendesk</span>
                     <span class="text-white font-display font-medium text-lg tracking-wide italic">ITIL 4</span>
-                    <span class="text-white font-display font-medium text-lg tracking-wide italic">Linux (Academic)</span>
+                    <span class="text-white font-display font-medium text-lg tracking-wide italic">Linux
+                        (Academic)</span>
                 </div>
             </div>
         </section>
@@ -581,15 +770,20 @@
             <div class="grid md:grid-cols-2 gap-24 items-center">
                 <div class="reveal">
                     <div class="text-emerald-500 mb-4 font-mono text-sm tracking-widest">// CORE_PROCESS</div>
-                    <h2 class="font-display text-4xl md:text-6xl font-bold mb-10 scramble-text glitch-text" data-value="PROFILE" data-text="PROFILE">PROFILE</h2>
+                    <h2 class="font-display text-4xl md:text-6xl font-bold mb-10 scramble-text glitch-text"
+                        data-value="PROFILE" data-text="PROFILE">PROFILE</h2>
                     <p class="text-xl text-zinc-300 leading-relaxed mb-6">
                         Technical Support professional with experience supporting users in complex digital environments.
                     </p>
                     <p class="text-zinc-400 leading-relaxed mb-6">
-                        Skilled in troubleshooting infrastructure-related issues, analyzing system behavior, and resolving incidents in networked environments, with hands-on exposure to Linux-based systems. I focus on service reliability through documentation, pattern analysis, and continuous improvement.
+                        Skilled in troubleshooting infrastructure-related issues, analyzing system behavior, and
+                        resolving incidents in networked environments, with hands-on exposure to Linux-based systems. I
+                        focus on service reliability through documentation, pattern analysis, and continuous
+                        improvement.
                     </p>
                     <p class="text-zinc-400 leading-relaxed">
-                        Currently pursuing an <span class="text-zinc-200">MA: IT Cyber Security</span> at Maria Curie-Skłodowska University, bridging hands-on support with advanced system defense studies.
+                        Currently pursuing an <span class="text-zinc-200">MA: IT Cyber Security</span> at Maria
+                        Curie-Skłodowska University, bridging hands-on support with advanced system defense studies.
                     </p>
                 </div>
 
@@ -601,8 +795,19 @@
                         <div class="dot green"></div>
                         <div class="ml-4 text-[10px] text-zinc-600 font-bold font-mono uppercase">sys_log_monitor</div>
                     </div>
-                    <div class="terminal-body font-mono" id="terminal-content">
-                        <!-- Content generated via JS -->
+                    <div class="terminal-body font-mono flex flex-col" id="terminal-container"
+                        onclick="document.getElementById('cmd-input').focus()">
+                        <div id="terminal-output" class="flex-grow overflow-y-auto mb-2 space-y-1">
+                            <div class="terminal-line">> BOATENG_SEC_OS v2.0.26 initialized...</div>
+                            <div class="terminal-line">> Type <span class="text-emerald-500">'help'</span> to see
+                                available commands.</div>
+                        </div>
+                        <div class="flex items-center text-xs">
+                            <span class="text-emerald-500 mr-2">guest@boateng-sec:~$</span>
+                            <input type="text" id="cmd-input"
+                                class="bg-transparent border-none outline-none text-zinc-300 w-full font-mono"
+                                autocomplete="off" spellcheck="false">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -610,7 +815,8 @@
 
         <!-- CERTIFICATIONS -->
         <section id="certifications" class="py-24 px-10 md:px-32 bg-zinc-950/20">
-            <h2 class="font-display text-4xl font-bold mb-12 scramble-text glitch-text" data-value="CERTIFICATIONS" data-text="CERTIFICATIONS">CERTIFICATIONS</h2>
+            <h2 class="font-display text-4xl font-bold mb-12 scramble-text glitch-text" data-value="CERTIFICATIONS"
+                data-text="CERTIFICATIONS">CERTIFICATIONS</h2>
             <div class="grid md:grid-cols-2 gap-6">
                 <div class="tech-box holo-card p-8 flex items-center space-x-4 group">
                     <div class="text-emerald-500 text-4xl font-bold font-mono">01</div>
@@ -631,7 +837,8 @@
 
         <!-- EXPERIENCE -->
         <section id="experience" class="py-40 px-10 md:px-32">
-            <h2 class="font-display text-5xl font-bold mb-20 scramble-text glitch-text" data-value="ACCESS_LOGS" data-text="ACCESS_LOGS">ACCESS_LOGS</h2>
+            <h2 class="font-display text-5xl font-bold mb-20 scramble-text glitch-text" data-value="ACCESS_LOGS"
+                data-text="ACCESS_LOGS">ACCESS_LOGS</h2>
 
             <div class="space-y-4">
                 <!-- Greenpeace -->
@@ -641,46 +848,63 @@
                         <div class="text-[10px] text-zinc-600 font-bold tracking-widest uppercase">Hamburg // DE</div>
                     </div>
                     <div class="flex-grow">
-                        <h3 class="text-2xl font-display font-bold text-white mb-2 group-hover:text-emerald-500 transition-colors">Technical Support</h3>
+                        <h3
+                            class="text-2xl font-display font-bold text-white mb-2 group-hover:text-emerald-500 transition-colors">
+                            Technical Support</h3>
                         <p class="text-emerald-500 mb-6 font-medium tracking-tight">Greenpeace Deutschland</p>
                         <ul class="text-zinc-400 space-y-4 text-sm leading-relaxed">
-                            <li class="flex gap-3"><span class="text-emerald-500 font-bold">/</span> Diagnosed and resolved technical issues for end-users across digital infrastructure.</li>
-                            <li class="flex gap-3"><span class="text-emerald-500 font-bold">/</span> Logged and tracked user-reported bugs, ensuring prompt escalation and documentation.</li>
-                            <li class="flex gap-3"><span class="text-emerald-500 font-bold">/</span> Analyzed user behavior data to recommend reliability and system improvements.</li>
+                            <li class="flex gap-3"><span class="text-emerald-500 font-bold">/</span> Diagnosed and
+                                resolved technical issues for end-users across digital infrastructure.</li>
+                            <li class="flex gap-3"><span class="text-emerald-500 font-bold">/</span> Logged and tracked
+                                user-reported bugs, ensuring prompt escalation and documentation.</li>
+                            <li class="flex gap-3"><span class="text-emerald-500 font-bold">/</span> Analyzed user
+                                behavior data to recommend reliability and system improvements.</li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- European XFEL -->
-                <div class="tech-box p-12 reveal flex flex-col md:flex-row gap-12 group opacity-80 hover:opacity-100 transition-opacity">
+                <div
+                    class="tech-box p-12 reveal flex flex-col md:flex-row gap-12 group opacity-80 hover:opacity-100 transition-opacity">
                     <div class="md:w-1/4">
                         <div class="text-zinc-500 font-mono text-xl font-bold mb-2">2019.05 — 2023.12</div>
                         <div class="text-[10px] text-zinc-600 font-bold tracking-widest uppercase">Hamburg // DE</div>
                     </div>
                     <div class="flex-grow">
-                        <h3 class="text-2xl font-display font-bold text-white mb-2 group-hover:text-emerald-500 transition-colors">Foreign Language Tech Support Assistant</h3>
+                        <h3
+                            class="text-2xl font-display font-bold text-white mb-2 group-hover:text-emerald-500 transition-colors">
+                            Foreign Language Tech Support Assistant</h3>
                         <p class="text-zinc-500 mb-6 font-medium tracking-tight">European XFEL</p>
                         <ul class="text-zinc-400 space-y-4 text-sm leading-relaxed">
-                            <li class="flex gap-3"><span class="text-emerald-500 font-bold">/</span> Managed website and internal display updates for accurate information distribution.</li>
-                            <li class="flex gap-3"><span class="text-emerald-500 font-bold">/</span> Provided multi-channel helpdesk support (Phone, Email, In-person).</li>
-                            <li class="flex gap-3"><span class="text-emerald-500 font-bold">/</span> Administered user accounts, databases, and digital records.</li>
-                            <li class="flex gap-3"><span class="text-emerald-500 font-bold">/</span> Authored user manuals, troubleshooting guides, and FAQs.</li>
+                            <li class="flex gap-3"><span class="text-emerald-500 font-bold">/</span> Managed website and
+                                internal display updates for accurate information distribution.</li>
+                            <li class="flex gap-3"><span class="text-emerald-500 font-bold">/</span> Provided
+                                multi-channel helpdesk support (Phone, Email, In-person).</li>
+                            <li class="flex gap-3"><span class="text-emerald-500 font-bold">/</span> Administered user
+                                accounts, databases, and digital records.</li>
+                            <li class="flex gap-3"><span class="text-emerald-500 font-bold">/</span> Authored user
+                                manuals, troubleshooting guides, and FAQs.</li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- Phone Research Field -->
-                <div class="tech-box p-12 reveal flex flex-col md:flex-row gap-12 group opacity-60 hover:opacity-100 transition-opacity">
+                <div
+                    class="tech-box p-12 reveal flex flex-col md:flex-row gap-12 group opacity-60 hover:opacity-100 transition-opacity">
                     <div class="md:w-1/4">
                         <div class="text-zinc-600 font-mono text-xl font-bold mb-2">2018.04 — 2019.06</div>
                         <div class="text-[10px] text-zinc-600 font-bold tracking-widest uppercase">Hamburg // DE</div>
                     </div>
                     <div class="flex-grow">
-                        <h3 class="text-2xl font-display font-bold text-white mb-2 group-hover:text-emerald-500 transition-colors">Market Improvement Researcher</h3>
+                        <h3
+                            class="text-2xl font-display font-bold text-white mb-2 group-hover:text-emerald-500 transition-colors">
+                            Market Improvement Researcher</h3>
                         <p class="text-zinc-500 mb-6 font-medium tracking-tight">Phone Research Field GmbH</p>
                         <ul class="text-zinc-400 space-y-4 text-sm leading-relaxed">
-                            <li class="flex gap-3"><span class="text-zinc-600 font-bold">/</span> Gathered data for product improvement analysis through specialized technical interviews.</li>
-                            <li class="flex gap-3"><span class="text-zinc-600 font-bold">/</span> Compiled detailed reports for client technology insights.</li>
+                            <li class="flex gap-3"><span class="text-zinc-600 font-bold">/</span> Gathered data for
+                                product improvement analysis through specialized technical interviews.</li>
+                            <li class="flex gap-3"><span class="text-zinc-600 font-bold">/</span> Compiled detailed
+                                reports for client technology insights.</li>
                         </ul>
                     </div>
                 </div>
@@ -692,10 +916,12 @@
             <div class="grid md:grid-cols-2 gap-24">
                 <!-- Skills -->
                 <div class="reveal">
-                    <h2 class="font-display text-4xl font-bold mb-12 scramble-text glitch-text" data-value="TECHNICAL_TOOLKIT" data-text="TECHNICAL_TOOLKIT">TECHNICAL_TOOLKIT</h2>
+                    <h2 class="font-display text-4xl font-bold mb-12 scramble-text glitch-text"
+                        data-value="TECHNICAL_TOOLKIT" data-text="TECHNICAL_TOOLKIT">TECHNICAL_TOOLKIT</h2>
                     <div class="space-y-8">
                         <div>
-                            <h4 class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 mb-4 font-bold">// INFRASTRUCTURE & OPS</h4>
+                            <h4 class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 mb-4 font-bold">//
+                                INFRASTRUCTURE & OPS</h4>
                             <div class="flex flex-wrap gap-3">
                                 <span class="badge">IT Support & Incident Handling</span>
                                 <span class="badge">Linux Systems (Academic Exposure)</span>
@@ -705,7 +931,8 @@
                             </div>
                         </div>
                         <div>
-                            <h4 class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 mb-4 font-bold">// COMMUNICATION & RESEARCH</h4>
+                            <h4 class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 mb-4 font-bold">//
+                                COMMUNICATION & RESEARCH</h4>
                             <div class="flex flex-wrap gap-3">
                                 <span class="badge">Technical Documentation</span>
                                 <span class="badge">Pattern Analysis (User Data)</span>
@@ -718,7 +945,8 @@
 
                 <!-- Education -->
                 <div class="reveal">
-                    <h2 class="font-display text-4xl font-bold mb-12 scramble-text glitch-text" data-value="ACADEMIC_PATH" data-text="ACADEMIC_PATH">ACADEMIC_PATH</h2>
+                    <h2 class="font-display text-4xl font-bold mb-12 scramble-text glitch-text"
+                        data-value="ACADEMIC_PATH" data-text="ACADEMIC_PATH">ACADEMIC_PATH</h2>
                     <div class="space-y-8">
                         <div class="tech-box p-6 border-l-4 border-emerald-500">
                             <div class="text-emerald-500 font-mono text-xs mb-2">[ ACTIVE ]</div>
@@ -742,24 +970,28 @@
 
         <!-- CASE STUDIES / PROJECTS -->
         <section id="projects" class="py-40 px-10 md:px-32">
-            <h2 class="font-display text-5xl font-bold mb-20 scramble-text glitch-text" data-value="CASE_STUDIES" data-text="CASE_STUDIES">CASE_STUDIES</h2>
+            <h2 class="font-display text-5xl font-bold mb-20 scramble-text glitch-text" data-value="CASE_STUDIES"
+                data-text="CASE_STUDIES">CASE_STUDIES</h2>
 
             <div class="grid md:grid-cols-2 gap-8">
                 <!-- Project 1: MoodPlant -->
                 <div class="tech-box holo-card p-8 flex flex-col h-full group reveal">
                     <div class="text-emerald-500 font-mono text-xs mb-4">[ PROJECT_01 ]</div>
-                    <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-emerald-400 transition-colors font-display">
+                    <h3
+                        class="text-2xl font-bold text-white mb-4 group-hover:text-emerald-400 transition-colors font-display">
                         MoodPlant <span class="text-emerald-500/50 mx-2">//</span> System Reliability
                     </h3>
                     <p class="text-zinc-400 mb-8 text-sm leading-relaxed flex-grow">
-                        Exploration of system state management and backend integration through a case study on cloud triggers and proactive incident prevention in mobile environments.
+                        Exploration of system state management and backend integration through a case study on cloud
+                        triggers and proactive incident prevention in mobile environments.
                     </p>
                     <div class="flex items-center justify-between">
                         <div class="flex space-x-2">
                             <span class="badge">Firebase</span>
                             <span class="badge">Troubleshooting</span>
                         </div>
-                        <a href="https://moodplant.app" target="_blank" rel="noopener noreferrer" class="text-emerald-500 text-xs font-bold uppercase tracking-widest hover:underline flex items-center font-mono">
+                        <a href="https://moodplant.app" target="_blank" rel="noopener noreferrer"
+                            class="text-emerald-500 text-xs font-bold uppercase tracking-widest hover:underline flex items-center font-mono">
                             VISIT_SITE →
                         </a>
                     </div>
@@ -768,11 +1000,13 @@
                 <!-- Project 2: Subverse -->
                 <div class="tech-box holo-card p-8 flex flex-col h-full group reveal">
                     <div class="text-emerald-500 font-mono text-xs mb-4">[ PROJECT_02 ]</div>
-                    <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-emerald-400 transition-colors font-display">
+                    <h3
+                        class="text-2xl font-bold text-white mb-4 group-hover:text-emerald-400 transition-colors font-display">
                         Subverse <span class="text-emerald-500/50 mx-2">//</span> Adversarial Trust
                     </h3>
                     <p class="text-zinc-400 mb-8 text-sm leading-relaxed flex-grow">
-                        Research into adversarial trust, perception, and the security implications of automated content generation within modern trust models.
+                        Research into adversarial trust, perception, and the security implications of automated content
+                        generation within modern trust models.
                     </p>
                     <div class="flex items-center justify-between">
                         <div class="flex space-x-2">
@@ -787,21 +1021,27 @@
         <!-- CONTACT -->
         <section id="contact" class="py-60 px-10 md:px-32 text-center relative overflow-hidden">
             <div class="reveal relative z-10">
-                <h2 class="font-display text-4xl md:text-[7rem] font-bold mb-12 scramble-text glitch-text" data-value="INIT_LINK" data-text="INIT_LINK">INIT_LINK</h2>
+                <h2 class="font-display text-4xl md:text-[7rem] font-bold mb-12 scramble-text glitch-text"
+                    data-value="INIT_LINK" data-text="INIT_LINK">INIT_LINK</h2>
                 <p class="text-zinc-500 max-w-lg mx-auto mb-20 font-mono text-sm leading-relaxed">
-                    Seeking a role where I can apply my support background and cybersecurity training to maintain system integrity.
+                    Seeking a role where I can apply my support background and cybersecurity training to maintain system
+                    integrity.
                 </p>
                 <div class="flex flex-col md:flex-row justify-center gap-12 font-display text-xl font-bold mb-12">
-                    <a href="mailto:payneboat@gmail.com" class="magnetic-wrap hover:text-emerald-500 transition-all border-b-2 border-zinc-800 hover:border-emerald-500 pb-2">PAYNEBOAT@GMAIL.COM</a>
-                    <a href="https://github.com/PushDream" target="_blank" rel="noopener noreferrer" class="magnetic-wrap hover:text-emerald-500 transition-all border-b-2 border-zinc-800 hover:border-emerald-500 pb-2">GITHUB</a>
-                    <a href="https://www.linkedin.com/in/owusu-boateng/" target="_blank" rel="noopener noreferrer" class="magnetic-wrap hover:text-emerald-500 transition-all border-b-2 border-zinc-800 hover:border-emerald-500 pb-2">LINKEDIN</a>
+                    <a href="mailto:payneboat@gmail.com"
+                        class="magnetic-wrap hover:text-emerald-500 transition-all border-b-2 border-zinc-800 hover:border-emerald-500 pb-2">PAYNEBOAT@GMAIL.COM</a>
+                    <a href="https://github.com/PushDream" target="_blank" rel="noopener noreferrer"
+                        class="magnetic-wrap hover:text-emerald-500 transition-all border-b-2 border-zinc-800 hover:border-emerald-500 pb-2">GITHUB</a>
+                    <a href="https://www.linkedin.com/in/owusu-boateng/" target="_blank" rel="noopener noreferrer"
+                        class="magnetic-wrap hover:text-emerald-500 transition-all border-b-2 border-zinc-800 hover:border-emerald-500 pb-2">LINKEDIN</a>
                 </div>
             </div>
         </section>
 
     </main>
 
-    <footer class="p-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-[10px] text-zinc-700 font-mono font-bold tracking-[0.3em] uppercase">
+    <footer
+        class="p-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-[10px] text-zinc-700 font-mono font-bold tracking-[0.3em] uppercase">
         <div>&copy; 2026 BOATENG // SYSTEMS_LOCKED</div>
         <div class="flex gap-8">
             <span>51.2465N / 22.5684E</span>
@@ -990,31 +1230,115 @@
             });
         }
 
-        // 4. TERMINAL SIMULATION
-        const terminal = document.getElementById('terminal-content');
-        const logs = [
-            "> ping 127.0.0.1 - stability check",
-            "> accessing /logs/incidents/greenpeace",
-            "> found: 14 pending tickets",
-            "> executing response_logic.py...",
-            "> SUCCESS: Incident resolved in 42ms",
-            "> scanning for vulnerabilities...",
-            "> threat_level: MINIMAL",
-            "> loading UMCS_Academic_Framework...",
-            "> session: OWUSU_BOATENG authenticated"
-        ];
-        let logIdx = 0;
+        // 4. INTERACTIVE TERMINAL
+        const cmdInput = document.getElementById('cmd-input');
+        const terminalOutput = document.getElementById('terminal-output');
+        const terminalContainer = document.getElementById('terminal-container');
 
-        function addLog() {
-            const line = document.createElement('div');
-            line.className = 'terminal-line' + (Math.random() > 0.7 ? ' cmd' : '');
-            line.textContent = logs[logIdx % logs.length];
-            terminal.appendChild(line);
-            if (terminal.childNodes.length > 8) terminal.removeChild(terminal.firstChild);
-            logIdx++;
-            setTimeout(addLog, 1500 + Math.random() * 2000);
+        const commands = {
+            help: "Available commands: help, whoami, clear, about, projects, skills, contact, social, date, hack, sudo, cv",
+            whoami: "guest@boateng-sec // Access Level: VISITOR",
+            about: "Navigating to PROFILE...",
+            projects: "Navigating to CASE_STUDIES...",
+            skills: "Navigating to TOOLKIT...",
+            contact: "Opening communication channels...",
+            clear: "CLEAR_BUFFER",
+            date: "", // Dynamic
+            hack: "Initiating BRUTE_FORCE sequence...",
+            sudo: "sudo: user is not in the sudoers file. This incident will be reported.",
+            cv: "Downloading CV..."
+        };
+
+        cmdInput.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                const input = this.value.trim();
+                if (input) {
+                    processCommand(input.toLowerCase());
+                }
+                this.value = '';
+            }
+        });
+
+        function processCommand(cmd) {
+            // Echo command
+            printToTerminal(`guest@boateng-sec:~$ ${cmd}`, 'text-zinc-400');
+
+            // Process
+            if (cmd === 'clear') {
+                terminalOutput.innerHTML = '';
+                printToTerminal("> Buffer cleared.", "text-zinc-500");
+                return;
+            }
+
+            if (cmd === 'date') {
+                printToTerminal(`> ${new Date().toString()}`);
+                return;
+            }
+
+            if (cmd === 'about') {
+                printToTerminal(commands.about);
+                document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
+
+            if (cmd === 'projects') {
+                printToTerminal(commands.projects);
+                document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
+
+            if (cmd === 'skills') {
+                printToTerminal(commands.skills);
+                document.getElementById('skills').scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
+
+            if (cmd === 'contact') {
+                printToTerminal(commands.contact);
+                document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
+
+            if (cmd === 'cv') {
+                printToTerminal(commands.cv);
+                const link = document.createElement('a');
+                link.href = 'cv.pdf';
+                link.download = 'cv.pdf';
+                link.click();
+                return;
+            }
+
+            if (cmd === 'hack') {
+                printToTerminal(commands.hack, "text-red-500 font-bold");
+                triggerHackEffect();
+                return;
+            }
+
+            if (commands[cmd]) {
+                const response = commands[cmd];
+                printToTerminal(`> ${response}`, 'text-emerald-500');
+            } else {
+                printToTerminal(`> Command not found: ${cmd}`, 'text-red-400');
+            }
         }
-        addLog();
+
+        function printToTerminal(text, className = '') {
+            const line = document.createElement('div');
+            line.className = `terminal-line ${className}`;
+            line.innerHTML = text;
+            terminalOutput.appendChild(line);
+            terminalOutput.scrollTop = terminalOutput.scrollHeight;
+        }
+
+        function triggerHackEffect() {
+            const originalText = document.body.innerHTML;
+            // A simple visual "freak out"
+            document.body.style.filter = "invert(1) hue-rotate(180deg)";
+            setTimeout(() => {
+                document.body.style.filter = "";
+                printToTerminal("> ACCESS DENIED. Firewall active.", "text-red-500");
+            }, 500);
+        }
 
         // 5. CLOCK
         function updateClock() {
@@ -1067,6 +1391,171 @@
             });
         });
 
+
+        // 7. KONAMI CODE EASTER EGG
+        const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        let konamiIndex = 0;
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === konamiCode[konamiIndex]) {
+                konamiIndex++;
+                if (konamiIndex === konamiCode.length) {
+                    activateRedAlert();
+                    konamiIndex = 0;
+                }
+            } else {
+                konamiIndex = 0; // Reset if mistake
+                if (e.key === 'ArrowUp') konamiIndex = 1; // Allow restart immediately if first key matches
+            }
+        });
+
+        function activateRedAlert() {
+            // Shake effect
+            document.body.classList.add('shake');
+
+            // Color shift logic
+            document.documentElement.style.setProperty('--neon', '#dc2626'); // Red color
+
+            // Force redraw/override specific elements that might not use the variable directly
+            document.querySelectorAll('.text-emerald-500').forEach(el => {
+                el.classList.remove('text-emerald-500');
+                el.classList.add('text-red-500');
+            });
+            document.querySelectorAll('.border-emerald-500').forEach(el => {
+                el.classList.remove('border-emerald-500');
+                el.classList.add('border-red-500');
+            });
+
+            // Terminal announcement
+            printToTerminal("> SYSTEM OVERRIDE DETECTED.", "text-red-500 font-bold");
+            printToTerminal("> ALERT LEVEL: CRITICAL", "text-red-500 font-bold");
+            printToTerminal("> WELCOME, ADMIN.", "text-red-500 font-bold");
+
+            setTimeout(() => {
+                document.body.classList.remove('shake');
+            }, 1000);
+        }
+
+        // 8. 3D TILT EFFECT
+        if (!isMobile) {
+            document.querySelectorAll('.holo-card').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left; // x position within the element
+                    const y = e.clientY - rect.top;  // y position within the element
+
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+
+                    const rotateX = ((y - centerY) / centerY) * -10; // Max rotation deg
+                    const rotateY = ((x - centerX) / centerX) * 10;
+
+                    gsap.to(card, {
+                        transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`,
+                        duration: 0.1,
+                        ease: "power1.out"
+                    });
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    gsap.to(card, {
+                        transform: `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`,
+                        duration: 0.5,
+                        ease: "elastic.out(1, 0.5)"
+                    });
+                });
+            });
+        }
+
+        // 9. HACKER TYPING MODE
+        const hackerCode = [
+            "struct group_info init_groups = { .usage = ATOMIC_INIT(2) };",
+            "struct group_info *groups_alloc(int gidsetsize){",
+            "    struct group_info *group_info;",
+            "    int nblocks;",
+            "    int i;",
+            "    nblocks = (gidsetsize + NGROUPS_PER_BLOCK - 1) / NGROUPS_PER_BLOCK;",
+            "    /* Make sure we always allocate at least one indirect block pointer */",
+            "    nblocks = nblocks ? : 1;",
+            "    group_info = kmalloc(sizeof(*group_info) + nblocks*sizeof(gid_t *), GFP_USER);",
+            "    if (!group_info)",
+            "        return NULL;",
+            "    group_info->ngroups = gidsetsize;",
+            "    group_info->nblocks = nblocks;",
+            "    atomic_set(&group_info->usage, 1);",
+            "    return group_info;",
+            "}"
+        ];
+
+        const hackerLayer = document.createElement('div');
+        hackerLayer.id = 'hacker-layer';
+        hackerLayer.style.cssText = `
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 50;
+            padding: 40px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            color: rgba(16, 185, 129, 0.5);
+            overflow: hidden;
+            display: none;
+        `;
+        document.body.appendChild(hackerLayer);
+
+        let codeIndex = 0;
+        let charIndex = 0;
+        let hackerModeActive = false;
+        let hackerTimer;
+
+        // Toggle logic: only active if not in input
+        document.addEventListener('keydown', (e) => {
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+            if (e.key === 'Escape') {
+                hackerLayer.style.display = 'none';
+                hackerLayer.innerHTML = '';
+                hackerModeActive = false;
+                return;
+            }
+
+            // If not special key, type code
+            if (e.key.length === 1) {
+                if (!hackerModeActive) {
+                    hackerModeActive = true;
+                    hackerLayer.style.display = 'block';
+                }
+
+                // Add chunks of code per keypress
+                const chunk = 3;
+                for (let i = 0; i < chunk; i++) {
+                    if (codeIndex >= hackerCode.length) codeIndex = 0;
+
+                    const line = hackerCode[codeIndex];
+                    const char = line[charIndex];
+
+                    if (char) {
+                        hackerLayer.innerHTML += char;
+                        charIndex++;
+                    } else {
+                        hackerLayer.innerHTML += '<br>';
+                        codeIndex++;
+                        charIndex = 0;
+                        window.scrollTo(0, document.body.scrollHeight);
+                    }
+                }
+
+                // Auto-fade out after inactivity
+                clearTimeout(hackerTimer);
+                hackerTimer = setTimeout(() => {
+                    hackerLayer.style.display = 'none';
+                    hackerLayer.innerHTML = '';
+                    hackerModeActive = false;
+                    codeIndex = 0;
+                    charIndex = 0;
+                }, 3000);
+            }
+        });
     </script>
 </body>
+
 </html>
