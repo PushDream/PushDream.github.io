@@ -27,7 +27,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://owusuboateng.me/">
     <meta property="og:title" content="Owusu-Debrah Boateng | Technical Support & Security">
-    <meta property="og:description" content="Technical Support Specialist pursuing MA in IT Cyber Security. Experience in IT infrastructure, troubleshooting, and system reliability.">
+    <meta property="og:description" content="Technical Support Engineer at Team Internet Group specialising in DNS infrastructure and domain lifecycle. Pursuing MA in IT Cyber Security.">
     <meta property="og:site_name" content="Owusu-Debrah Boateng Portfolio">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Owusu-Debrah Boateng | Technical Support & Security">
@@ -45,8 +45,8 @@
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Owusu-Debrah Boateng",
-      "jobTitle": "Technical Support Specialist",
-      "description": "Technical Support Specialist pursuing MA in IT Cyber Security at UMCS. Experienced in IT infrastructure, incident handling, and system reliability.",
+      "jobTitle": "Technical Support Engineer (Domains & DNS Infrastructure)",
+      "description": "Technical Support Engineer at Team Internet Group specialising in DNS infrastructure and domain lifecycle. Pursuing MA in IT Cyber Security at UMCS.",
       "url": "https://owusuboateng.me/", 
       "sameAs": [
         "https://www.linkedin.com/in/owusu-boateng/",
@@ -253,9 +253,67 @@
         .skip-link:focus {
             top: 0;
         }
+
+        /* 1. Scroll progress bar */
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            width: 0%;
+            background: linear-gradient(90deg, #10b981, #34d399);
+            z-index: 9999;
+            box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+            transition: width 0.08s linear;
+        }
+
+        /* 2. Ambient hero glow */
+        .hero-glow {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: min(700px, 100vw);
+            height: min(500px, 80vw);
+            background: radial-gradient(ellipse at center, rgba(16, 185, 129, 0.1) 0%, transparent 65%);
+            pointer-events: none;
+            animation: glow-pulse 4s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+            50%       { opacity: 1;   transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        /* 3. Active nav section indicator */
+        .nav-link.active-section {
+            color: #10b981;
+        }
+
+        /* 4. Stagger reveals */
+        .stagger-item {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .stagger-item.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Respect reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            .hero-glow { animation: none; opacity: 0.6; }
+            .stagger-item { transition: none; }
+            .reveal { transition: none; }
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-emerald-500/30 selection:text-emerald-200">
+
+    <div id="scroll-progress" aria-hidden="true"></div>
 
     <!-- Skip to main content for accessibility -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -307,23 +365,24 @@
     <main id="main-content" class="max-w-5xl mx-auto px-6 pt-32 pb-40">
         
         <!-- Hero Section -->
-        <section class="min-h-[60vh] flex flex-col justify-center reveal">
+        <section class="min-h-[60vh] flex flex-col justify-center reveal relative overflow-hidden">
+            <div class="hero-glow" aria-hidden="true"></div>
             <div class="inline-flex items-center space-x-2 bg-white/5 border border-white/10 rounded-full px-3 py-1 mb-8 w-fit">
                 <span class="relative flex h-2 w-2">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                 </span>
-                <span class="text-[10px] uppercase tracking-widest font-medium text-zinc-400">IT Support / Junior SOC • Lublin / Remote</span>
+                <span class="text-[10px] uppercase tracking-widest font-medium text-zinc-400">Technical Support Engineer • Team Internet Group</span>
             </div>
             
             <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-[1.1] font-display">
                 Owusu-Debrah Boateng <br/>
-                <span class="text-zinc-500 italic font-light">Supporting reliable and secure systems.</span>
+                <span class="text-zinc-500 italic font-light">Building reliability through DNS and domain infrastructure.</span>
             </h1>
             
             <p class="text-lg md:text-xl text-zinc-400 max-w-2xl mb-12 leading-relaxed">
-                <span class="text-white font-medium">Technical Support Specialist | MA: IT Cyber Security (UMCS)</span><br/>
-                Experience in troubleshooting infrastructure issues, documenting incidents, and analyzing system behavior in networked environments, with hands-on Linux exposure.
+                <span class="text-white font-medium">Technical Support Engineer, Domains & DNS | MA: IT Cyber Security (UMCS)</span><br/>
+                Specialising in DNS infrastructure, domain lifecycle troubleshooting, and platform-level incident resolution at Team Internet Group.
             </p>
 
             <div class="flex flex-wrap gap-4 mb-16">
@@ -335,6 +394,7 @@
             <div class="pt-8 border-t border-white/5">
                 <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-600 mb-6 font-semibold">Experience with</p>
                 <div class="flex flex-wrap items-center gap-x-10 gap-y-6 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
+                    <span class="text-white font-display font-bold text-xl tracking-tighter">Team Internet Group</span>
                     <span class="text-white font-display font-bold text-xl tracking-tighter">Greenpeace</span>
                     <span class="text-white font-display font-bold text-xl tracking-tight">European XFEL</span>
                     <span class="text-white font-display font-medium text-lg tracking-wide">Zendesk</span>
@@ -352,10 +412,10 @@
                 </div>
                 <div class="md:col-span-2">
                     <p class="text-xl text-zinc-300 leading-relaxed mb-6">
-                        Technical Support professional with experience supporting users in complex digital environments.
+                        Technical Support Engineer specialising in DNS infrastructure, domain lifecycle management, and platform-level incident resolution.
                     </p>
                     <p class="text-zinc-400 leading-relaxed mb-6">
-                        Skilled in troubleshooting infrastructure-related issues, analyzing system behavior, and resolving incidents in networked environments, with hands-on exposure to Linux-based systems. I focus on service reliability through documentation, pattern analysis, and continuous improvement.
+                        Currently at Team Internet Group, I troubleshoot domain registration, transfer, and renewal workflows, diagnose DNS misconfigurations (A, CNAME, MX, TXT), and investigate propagation issues using tools like dig and nslookup. I analyse API and system logs, support VIP customers with escalated cases, and collaborate with engineering teams on platform bugs — working with registrar/registry protocols including EPP concepts and domain states.
                     </p>
                     <p class="text-zinc-400 leading-relaxed">
                         Currently pursuing an <span class="text-zinc-200">MA: IT Cyber Security</span> at Maria Curie-Skłodowska University, bridging hands-on support with advanced system defense studies.
@@ -367,7 +427,7 @@
         <!-- Certifications -->
         <section id="certifications" class="py-24 border-t border-white/5 reveal">
             <h2 class="text-2xl font-bold text-white mb-12 font-display">Certifications</h2>
-            <div class="grid md:grid-cols-2 gap-6">
+            <div class="grid md:grid-cols-2 gap-6 stagger-wrap">
                 <div class="glass-card p-6 rounded-xl border border-emerald-500/10 flex items-center space-x-4">
                     <div class="text-emerald-500 bg-emerald-500/10 p-3 rounded-lg" aria-hidden="true">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
@@ -411,7 +471,22 @@
         <section id="experience" class="py-24 border-t border-white/5 reveal">
             <h2 class="text-2xl font-bold text-white mb-12 font-display">Experience</h2>
             
-            <div class="space-y-16">
+            <div class="space-y-16 stagger-wrap">
+                <!-- Team Internet Group -->
+                <div class="grid md:grid-cols-4 gap-4 group">
+                    <div class="text-zinc-500 font-mono text-xs uppercase tracking-widest pt-1">Apr 2026 — Present</div>
+                    <div class="md:col-span-3">
+                        <h3 class="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors">Technical Support Engineer</h3>
+                        <p class="text-emerald-500 mb-6 font-medium tracking-tight">Team Internet Group · Domains & DNS Infrastructure</p>
+                        <ul class="text-zinc-400 space-y-4 text-sm leading-relaxed">
+                            <li class="flex gap-3"><span class="text-emerald-500 font-bold">/</span> Troubleshoot domain lifecycle issues including registration, transfer, and renewal workflows.</li>
+                            <li class="flex gap-3"><span class="text-emerald-500 font-bold">/</span> Diagnose DNS misconfigurations (A, CNAME, MX, TXT records) and investigate propagation issues using dig and nslookup.</li>
+                            <li class="flex gap-3"><span class="text-emerald-500 font-bold">/</span> Analyse API and system logs to resolve platform-level incidents, applying EPP concepts and domain state knowledge.</li>
+                            <li class="flex gap-3"><span class="text-emerald-500 font-bold">/</span> Support VIP customers with escalated technical cases and collaborate with engineering teams to track and resolve platform bugs.</li>
+                        </ul>
+                    </div>
+                </div>
+
                 <!-- Greenpeace -->
                 <div class="grid md:grid-cols-4 gap-4 group">
                     <div class="text-zinc-500 font-mono text-xs uppercase tracking-widest pt-1">Jan 2023 — Sep 2024</div>
@@ -441,18 +516,6 @@
                     </div>
                 </div>
 
-                <!-- Phone Research Field -->
-                <div class="grid md:grid-cols-4 gap-4 group">
-                    <div class="text-zinc-500 font-mono text-xs uppercase tracking-widest pt-1">Apr 2018 — Jun 2019</div>
-                    <div class="md:col-span-3">
-                        <h3 class="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors">Market Improvement Researcher</h3>
-                        <p class="text-zinc-500 mb-6 font-medium tracking-tight">Phone Research Field GmbH</p>
-                        <ul class="text-zinc-400 space-y-4 text-sm leading-relaxed">
-                            <li class="flex gap-3"><span class="text-zinc-600 font-bold">/</span> Gathered data for product improvement analysis through specialized technical interviews.</li>
-                            <li class="flex gap-3"><span class="text-zinc-600 font-bold">/</span> Compiled detailed reports for client technology insights.</li>
-                        </ul>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -466,6 +529,10 @@
                         <div>
                             <h4 class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 mb-4 font-bold">Infrastructure & Ops</h4>
                             <div class="flex flex-wrap gap-3">
+                                <span class="badge text-emerald-400">DNS Troubleshooting (A, CNAME, MX, TXT)</span>
+                                <span class="badge text-emerald-400">Domain Lifecycle (Registration, Transfer, Renewal)</span>
+                                <span class="badge">EPP / Registrar Protocols</span>
+                                <span class="badge">dig & nslookup</span>
                                 <span class="badge">IT Support & Incident Handling</span>
                                 <span class="badge">Linux Systems (Academic Exposure)</span>
                                 <span class="badge text-emerald-400">Log & System Behavior Analysis</span>
@@ -515,7 +582,7 @@
                 <h2 class="text-2xl font-bold text-white font-display">Case Studies</h2>
             </div>
             
-            <div class="grid md:grid-cols-2 gap-8">
+            <div class="grid md:grid-cols-2 gap-8 stagger-wrap">
                 <!-- Project 1 -->
                 <div class="glass-card rounded-2xl p-8 flex flex-col h-full group">
                     <h3 class="text-xl font-bold text-white mb-4 group-hover:text-emerald-400 transition-colors">
@@ -556,9 +623,9 @@
 
         <!-- Contact Section -->
         <section id="contact" class="py-24 border-t border-white/5 reveal text-center">
-            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 font-display">Ready for the next challenge.</h2>
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 font-display">Let's connect.</h2>
             <p class="text-zinc-400 mb-10 max-w-lg mx-auto">
-                Seeking a role where I can apply my support background and cybersecurity training to maintain system integrity.
+                Open to collaboration, security research discussions, and connecting with others in the DNS, infrastructure, and cybersecurity space.
             </p>
             <div class="flex flex-col md:flex-row items-center justify-center gap-6">
                 <a href="mailto:payneboat@gmail.com" class="text-white hover:text-emerald-500 text-lg underline decoration-zinc-800 underline-offset-8 transition-all">Email Contact</a>
@@ -590,19 +657,65 @@
     </div>
 
     <script>
-        const reveals = document.querySelectorAll('.reveal');
-        const revealOnScroll = () => {
-            reveals.forEach(reveal => {
-                const windowHeight = window.innerHeight;
-                const elementTop = reveal.getBoundingClientRect().top;
-                const elementVisible = 100;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveal.classList.add('active');
+        // 1. Scroll progress bar
+        const progressBar = document.getElementById('scroll-progress');
+        function updateProgress() {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            if (docHeight > 0) progressBar.style.width = (scrollTop / docHeight * 100) + '%';
+        }
+        window.addEventListener('scroll', updateProgress, { passive: true });
+
+        // 2. Scroll reveal (IntersectionObserver — better performance on mobile)
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    revealObserver.unobserve(entry.target);
                 }
             });
-        };
-        window.addEventListener('scroll', revealOnScroll);
-        window.onload = revealOnScroll;
+        }, { threshold: 0.05, rootMargin: '0px 0px -60px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // 3. Active nav highlighting (desktop)
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => {
+                        link.classList.toggle(
+                            'active-section',
+                            link.getAttribute('href') === '#' + entry.target.id
+                        );
+                    });
+                }
+            });
+        }, { threshold: 0.35 });
+
+        document.querySelectorAll('section[id]').forEach(s => sectionObserver.observe(s));
+
+        // 4. Staggered child reveals
+        // Auto-tag direct children of stagger-wrap
+        document.querySelectorAll('.stagger-wrap').forEach(wrap => {
+            Array.from(wrap.children).forEach(child => child.classList.add('stagger-item'));
+        });
+
+        const staggerObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const items = entry.target.querySelectorAll('.stagger-item');
+                    // Shorter delay on mobile so it feels snappy
+                    const delay = window.innerWidth < 768 ? 80 : 120;
+                    items.forEach((item, i) => {
+                        setTimeout(() => item.classList.add('active'), i * delay);
+                    });
+                    staggerObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.stagger-wrap').forEach(wrap => staggerObserver.observe(wrap));
 
         // Mobile menu functionality
         const menuToggle = document.getElementById('menu-toggle');
@@ -621,11 +734,7 @@
         });
 
         menuClose.addEventListener('click', closeMobileMenu);
-
-        // Close mobile menu when clicking on nav items
-        mobileNavItems.forEach(item => {
-            item.addEventListener('click', closeMobileMenu);
-        });
+        mobileNavItems.forEach(item => item.addEventListener('click', closeMobileMenu));
     </script>
 
 </body>
