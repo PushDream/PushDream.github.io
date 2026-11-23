@@ -240,7 +240,7 @@ function initReveals() {
     }, { amount: 0.15 });
 
     inView('[data-stagger]', (el) => {
-        animate(el.children, { opacity: [0, 1], y: [24, 0] }, { delay: stagger(0.09), duration: 0.75, ease: EASE });
+        animate(Array.from(el.children), { opacity: [0, 1], y: [24, 0] }, { delay: stagger(0.09), duration: 0.75, ease: EASE });
     }, { amount: 0.12 });
 
     inView('[data-chips]', (group) => {
