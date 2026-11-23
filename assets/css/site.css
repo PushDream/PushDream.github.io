@@ -475,10 +475,10 @@ a:focus-visible, button:focus-visible {
     font-size: 13.5px;
     line-height: 1.8;
     color: var(--text);
-    white-space: pre-wrap;
+    white-space: normal;
     word-break: break-word;
 }
-.t-line { display: block; min-height: 1.8em; }
+.t-line { display: block; min-height: 1.8em; white-space: pre-wrap; }
 .t-prompt { color: var(--accent); margin-right: 4px; }
 .t-out { color: var(--text-3); }
 .t-cursor {
