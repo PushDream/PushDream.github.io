@@ -4,6 +4,7 @@
  *   npm install && npm run build
  */
 import { animate, inView, scroll, stagger, hover, press } from 'motion';
+import { initTerminal } from './terminal.js';
 
 window.__siteMotionReady = true;
 
@@ -202,7 +203,8 @@ function initHero() {
     fadeUp(lead, { delay: 0.6 });
     fadeUp(actions, { delay: 0.72 });
     animate(terminal, { opacity: [0, 1], y: [32, 0], scale: [0.97, 1] }, { duration: 1, delay: 0.5, ease: EASE })
-        .then(() => typeTerminal());
+        .then(() => typeTerminal())
+        .then(() => { if (terminalApi) terminalApi.activate(); });
 
     inView(proof, () => {
         fadeUp(proof, { y: 12, duration: 0.6 });
@@ -375,14 +377,20 @@ function initPress() {
 
 /* ------------------------------------------------------------------ */
 
+let terminalApi = null;
+
 function start() {
+    terminalApi = initTerminal({ motion: MOTION });
     initNav();
     initMobileMenu();
     initCopy();
     initYear();
     initScrollProgress();
 
-    if (!MOTION) return;
+    if (!MOTION) {
+        if (terminalApi) terminalApi.activate();
+        return;
+    }
     initHero();
     initReveals();
     initTimeline();
