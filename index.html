@@ -233,13 +233,15 @@
                 </div>
             </div>
 
-            <!-- Terminal card: decorative summary of facts stated elsewhere on the page -->
-            <div class="terminal" data-hero-item aria-hidden="true">
-                <div class="terminal__bar">
+            <!-- Terminal card: an intro that types itself, then a prompt visitors can use.
+                 Command answers are read from this page's own sections (src/terminal.js). -->
+            <div class="terminal" data-hero-item data-term>
+                <div class="terminal__bar" aria-hidden="true">
                     <span></span><span></span><span></span>
                     <p>~/owusuboateng.me</p>
                 </div>
-                <pre class="terminal__body" data-terminal><code><span class="t-line"><span class="t-prompt">$</span> whoami</span>
+                <div class="terminal__body" data-term-body>
+                    <pre class="terminal__intro" data-terminal aria-hidden="true"><code><span class="t-line"><span class="t-prompt">$</span> whoami</span>
 <span class="t-line t-out">owusu-debrah boateng</span>
 <span class="t-line"><span class="t-prompt">$</span> role --current</span>
 <span class="t-line t-out">Technical Support Engineer @ Team Internet Group</span>
@@ -247,7 +249,29 @@
 <span class="t-line t-out">dns  domains  incidents  security</span>
 <span class="t-line"><span class="t-prompt">$</span> study</span>
 <span class="t-line t-out">MA: IT Cyber Security, UMCS Lublin</span>
-<span class="t-line"><span class="t-prompt">$</span> <span class="t-cursor"></span></span></code></pre>
+<span class="t-line" data-term-idle><span class="t-prompt">$</span> <span class="t-cursor"></span></span></code></pre>
+                    <div class="terminal__log" data-term-log role="log" aria-live="polite" aria-label="Terminal output"></div>
+                    <form class="terminal__form" data-term-form hidden>
+                        <span class="t-prompt" aria-hidden="true">$</span>
+                        <span class="sr-only" id="term-label">Terminal. Type a command such as help, then press Enter.</span>
+                        <input id="term-input" class="terminal__input" type="text" name="command"
+                            aria-labelledby="term-label" autocomplete="off" autocapitalize="off"
+                            autocorrect="off" spellcheck="false" enterkeyhint="go" maxlength="64">
+                    </form>
+                </div>
+                <div class="terminal__chips" data-term-chips hidden>
+                    <p class="terminal__hint">Type a command, or tap one:</p>
+                    <div class="terminal__chiprow">
+                        <button type="button" data-cmd="help">help</button>
+                        <button type="button" data-cmd="whoami">whoami</button>
+                        <button type="button" data-cmd="experience">experience</button>
+                        <button type="button" data-cmd="skills">skills</button>
+                        <button type="button" data-cmd="certs">certs</button>
+                        <button type="button" data-cmd="projects">projects</button>
+                        <button type="button" data-cmd="contact">contact</button>
+                        <button type="button" data-cmd="clear">clear</button>
+                    </div>
+                </div>
             </div>
 
             <!-- Proof Strip -->
