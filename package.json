@@ -1,0 +1,12 @@
+{
+  "name": "owusuboateng-me",
+  "private": true,
+  "description": "Source for owusuboateng.me. The site is static; this only bundles the Motion animation script.",
+  "scripts": {
+    "build": "esbuild src/site.js --bundle --minify --format=iife --target=es2019 --legal-comments=none --outfile=assets/js/site.js"
+  },
+  "devDependencies": {
+    "esbuild": "0.24.2",
+    "motion": "14.10.1"
+  }
+}
