@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +12,7 @@
 
     <!--
         Security Note: This site demonstrates security-conscious development practices.
-        - Subresource Integrity (SRI) hashes validate CDN resources
+        - No third-party scripts: the animation code (Motion, motion.dev) is bundled and served from this repo
         - CSP would be configured via server headers in production
         - External links use rel="noopener noreferrer" to prevent tab-nabbing
         - No user input handling reduces XSS attack surface
@@ -133,624 +133,411 @@
     <title>Owusu-Debrah Boateng | Technical Support & Security</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
-    <!-- DNS Prefetch & Preconnect for Performance -->
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;500;700&display=swap">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <!-- Tailwind CSS CDN
-         Note: SRI hashes cannot be used with Tailwind CDN as the content is dynamically generated.
-         In production, use a build process with npm to generate static CSS for SRI validation.
-         Current approach accepts the trade-off for development convenience. -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        :root {
-            --bg-dark: #0a0a0a;
-            --accent: #10b981;
-            --accent-glow: rgba(16, 185, 129, 0.2);
-        }
+    <link rel="stylesheet" href="assets/css/site.css">
 
-        body {
-            background-color: var(--bg-dark);
-            color: #d4d4d8;
-            font-family: 'Inter', sans-serif;
-        }
-
-        h1, h2, h3, .font-display {
-            font-family: 'Space Grotesk', sans-serif;
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .glass-card:hover {
-            border-color: var(--accent);
-            background: rgba(255, 255, 255, 0.04);
-            box-shadow: 0 0 30px var(--accent-glow);
-        }
-
-        .btn-primary {
-            background-color: var(--accent);
-            color: #000;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px var(--accent-glow);
-        }
-
-        .nav-link {
-            transition: color 0.2s ease;
-        }
-
-        .nav-link:hover {
-            color: var(--accent);
-        }
-
-        .sticky-contact {
-            background: rgba(10, 10, 10, 0.8);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(12px);
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #0a0a0a; }
-        ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 10px; }
-
-        .badge {
-            font-size: 0.7rem;
-            padding: 2px 10px;
-            border-radius: 9999px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #a1a1aa;
-            background: rgba(255, 255, 255, 0.03);
-        }
-
-        .nav-link-mobile {
-            transition: color 0.2s ease;
-        }
-
-        .nav-link-mobile:hover {
-            color: var(--accent);
-        }
-
-        /* Focus states for accessibility */
-        a:focus-visible, button:focus-visible {
-            outline: 2px solid var(--accent);
-            outline-offset: 4px;
-        }
-
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 0;
-            background: var(--accent);
-            color: #000;
-            padding: 8px 16px;
-            text-decoration: none;
-            z-index: 100;
-            font-weight: bold;
-        }
-
-        .skip-link:focus {
-            top: 0;
-        }
-
-        /* 1. Scroll progress bar */
-        #scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 2px;
-            width: 0%;
-            background: linear-gradient(90deg, #10b981, #34d399);
-            z-index: 9999;
-            box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
-            transition: width 0.08s linear;
-        }
-
-        /* 2. Ambient hero glow */
-        .hero-glow {
-            position: absolute;
-            top: 40%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: min(700px, 100vw);
-            height: min(500px, 80vw);
-            background: radial-gradient(ellipse at center, rgba(16, 185, 129, 0.1) 0%, transparent 65%);
-            pointer-events: none;
-            animation: glow-pulse 4s ease-in-out infinite;
-            z-index: 0;
-        }
-
-        @keyframes glow-pulse {
-            0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
-            50%       { opacity: 1;   transform: translate(-50%, -50%) scale(1.1); }
-        }
-
-        /* 3. Active nav section indicator */
-        .nav-link.active-section {
-            color: #10b981;
-        }
-
-        /* 4. Stagger reveals */
-        .stagger-item {
-            opacity: 0;
-            transform: translateY(18px);
-            transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
-                        transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .stagger-item.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Respect reduced motion */
-        @media (prefers-reduced-motion: reduce) {
-            .hero-glow { animation: none; opacity: 0.6; }
-            .stagger-item { transition: none; }
-            .reveal { transition: none; }
-        }
-    </style>
+    <!-- Animations only run when JavaScript works and the visitor has not asked for reduced motion.
+         Without either, every element is simply shown as normal. -->
+    <script>
+        (function () {
+            var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (!reduce) {
+                document.documentElement.classList.add('motion-ok');
+                // Safety net: if the animation script fails to load, show everything.
+                setTimeout(function () {
+                    if (!window.__siteMotionReady) document.documentElement.classList.remove('motion-ok');
+                }, 2500);
+            }
+        })();
+    </script>
+    <script src="assets/js/site.js" defer></script>
 </head>
-<body class="antialiased selection:bg-emerald-500/30 selection:text-emerald-200">
+<body>
 
-    <div id="scroll-progress" aria-hidden="true"></div>
+    <div class="scroll-progress" aria-hidden="true"></div>
+    <div class="bg-grid" aria-hidden="true"></div>
+    <div class="bg-glow" aria-hidden="true"></div>
 
-    <!-- Skip to main content for accessibility -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <noscript>
-        <div style="background: #fef3c7; color: #92400e; padding: 1rem; text-align: center; font-size: 0.875rem;">
-            This page works best with JavaScript enabled for smooth animations and navigation.
-        </div>
-    </noscript>
-
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 border-b border-white/5 bg-black/40 backdrop-blur-md">
-        <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-            <div class="flex items-center gap-8">
-                <div class="font-display font-bold text-xl tracking-tight text-white">
-                    O<span class="text-emerald-500">.</span>B
-                </div>
-                <a href="techy.html" class="text-[9px] tracking-[0.3em] uppercase font-bold text-zinc-600 hover:text-emerald-500 transition-colors border border-zinc-800 hover:border-emerald-500 px-3 py-1 rounded">[ Techy Mode ]</a>
+    <header class="nav" data-nav>
+        <div class="nav__inner">
+            <div class="nav__left">
+                <a href="#top" class="logo" aria-label="Owusu-Debrah Boateng, back to top">O<span>.</span>B</a>
+                <a href="techy.html" class="mode-link">[ Techy Mode ]</a>
             </div>
-            <div class="hidden md:flex space-x-8 text-sm font-medium">
-                <a href="#about" class="nav-link">About</a>
-                <a href="#experience" class="nav-link">Experience</a>
-                <a href="#skills" class="nav-link">Toolkit</a>
-                <a href="#projects" class="nav-link">Selected Work</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </div>
-            <button id="menu-toggle" class="md:hidden text-zinc-400" aria-label="Open menu">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+            <nav class="nav__links" aria-label="Sections">
+                <span class="nav__pill" aria-hidden="true"></span>
+                <a href="#about" class="nav__link">About</a>
+                <a href="#experience" class="nav__link">Experience</a>
+                <a href="#skills" class="nav__link">Toolkit</a>
+                <a href="#projects" class="nav__link">Selected Work</a>
+                <a href="#contact" class="nav__link">Contact</a>
+            </nav>
+            <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" data-menu-open>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7h16M4 12h16m-7 5h7" />
                 </svg>
             </button>
         </div>
-    </nav>
+    </header>
 
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="fixed inset-0 bg-black z-[60] flex flex-col items-center justify-center space-y-8 text-2xl font-display hidden">
-        <button id="menu-close" class="absolute top-6 right-6 text-zinc-400" aria-label="Close menu">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+    <div id="mobile-menu" class="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+        <button class="mobile-menu__close" type="button" aria-label="Close menu" data-menu-close>
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
         </button>
-        <a href="#about" class="nav-link-mobile mobile-nav-item">About</a>
-        <a href="#experience" class="nav-link-mobile mobile-nav-item">Experience</a>
-        <a href="#skills" class="nav-link-mobile mobile-nav-item">Toolkit</a>
-        <a href="#projects" class="nav-link-mobile mobile-nav-item">Selected Work</a>
-        <a href="#contact" class="nav-link-mobile mobile-nav-item">Contact</a>
+        <nav class="mobile-menu__links" aria-label="Sections">
+            <a href="#about" class="mobile-menu__link"><span>01</span>About</a>
+            <a href="#experience" class="mobile-menu__link"><span>02</span>Experience</a>
+            <a href="#skills" class="mobile-menu__link"><span>03</span>Toolkit</a>
+            <a href="#projects" class="mobile-menu__link"><span>04</span>Selected Work</a>
+            <a href="#contact" class="mobile-menu__link"><span>05</span>Contact</a>
+        </nav>
     </div>
 
-    <main id="main-content" class="max-w-5xl mx-auto px-6 pt-32 pb-40">
-        
-        <!-- Hero Section -->
-        <section class="min-h-[60vh] flex flex-col justify-center reveal relative overflow-hidden">
-            <div class="hero-glow" aria-hidden="true"></div>
-            <div class="inline-flex items-center space-x-2 bg-white/5 border border-white/10 rounded-full px-3 py-1 mb-8 w-fit">
-                <span class="relative flex h-2 w-2">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                </span>
-                <span class="text-[10px] uppercase tracking-widest font-medium text-zinc-400">Technical Support Engineer • Team Internet Group</span>
-            </div>
-            
-            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-[1.1] font-display">
-                Owusu-Debrah Boateng <br/>
-                <span class="text-zinc-500 italic font-light">Technical support at the edge of infrastructure and security.</span>
-            </h1>
-            
-            <p class="text-lg md:text-xl text-zinc-400 max-w-2xl mb-12 leading-relaxed">
-                <span class="text-white font-medium">Technical Support Engineer, Domains & DNS | MA: IT Cyber Security (UMCS)</span><br/>
-                Troubleshooting DNS and domain workflows, resolving platform-level incidents, and building toward cybersecurity practice through graduate study.
-            </p>
+    <main id="main-content" class="container">
 
-            <div class="flex flex-wrap gap-4 mb-16">
-                <a href="#contact" class="btn-primary px-10 py-4 rounded-xl font-semibold">Contact Me</a>
-                <a href="cv.pdf" download class="border border-zinc-800 bg-zinc-900/50 hover:bg-zinc-800 px-10 py-4 rounded-xl font-semibold transition-colors text-white">Download CV</a>
+        <!-- Hero -->
+        <section id="top" class="hero">
+            <div class="hero__text">
+                <div class="status-chip" data-hero-item>
+                    <span class="status-dot" aria-hidden="true"></span>
+                    <span>Technical Support Engineer • Team Internet Group</span>
+                </div>
+
+                <h1 class="hero__title">
+                    <span class="hero__name" data-split>Owusu-Debrah Boateng</span>
+                    <span class="hero__tagline" data-split>Technical support at the edge of infrastructure and security.</span>
+                </h1>
+
+                <p class="hero__lead" data-hero-item>
+                    <strong>Technical Support Engineer, Domains &amp; DNS | MA: IT Cyber Security (UMCS)</strong><br>
+                    Troubleshooting DNS and domain workflows, resolving platform-level incidents, and building toward cybersecurity practice through graduate study.
+                </p>
+
+                <div class="hero__actions" data-hero-item>
+                    <a href="#contact" class="btn btn--primary" data-magnetic>Contact Me</a>
+                    <a href="cv.pdf" download class="btn btn--ghost" data-magnetic>
+                        Download CV
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v12m0 0l-5-5m5 5l5-5M5 20h14"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Terminal card: decorative summary of facts stated elsewhere on the page -->
+            <div class="terminal" data-hero-item aria-hidden="true">
+                <div class="terminal__bar">
+                    <span></span><span></span><span></span>
+                    <p>~/owusuboateng.me</p>
+                </div>
+                <pre class="terminal__body" data-terminal><code><span class="t-line"><span class="t-prompt">$</span> whoami</span>
+<span class="t-line t-out">owusu-debrah boateng</span>
+<span class="t-line"><span class="t-prompt">$</span> role --current</span>
+<span class="t-line t-out">Technical Support Engineer @ Team Internet Group</span>
+<span class="t-line"><span class="t-prompt">$</span> focus --list</span>
+<span class="t-line t-out">dns  domains  incidents  security</span>
+<span class="t-line"><span class="t-prompt">$</span> study</span>
+<span class="t-line t-out">MA: IT Cyber Security, UMCS Lublin</span>
+<span class="t-line"><span class="t-prompt">$</span> <span class="t-cursor"></span></span></code></pre>
             </div>
 
             <!-- Proof Strip -->
-            <div class="pt-8 border-t border-white/5">
-                <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-600 mb-6 font-semibold">Experience with</p>
-                <div class="flex flex-wrap items-center gap-x-10 gap-y-6 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
-                    <span class="text-white font-display font-bold text-xl tracking-tighter">Team Internet Group</span>
-                    <span class="text-white font-display font-bold text-xl tracking-tighter">Greenpeace</span>
-                    <span class="text-white font-display font-bold text-xl tracking-tight">European XFEL</span>
-                    <span class="text-white font-display font-medium text-lg tracking-wide">Zendesk</span>
-                    <span class="text-white font-display font-medium text-lg tracking-wide italic">ITIL 4</span>
-                </div>
+            <div class="proof" data-hero-item>
+                <p class="eyebrow">Experience with</p>
+                <ul class="proof__list">
+                    <li>Team Internet Group</li>
+                    <li>Greenpeace</li>
+                    <li>European XFEL</li>
+                    <li>Zendesk</li>
+                    <li><em>ITIL 4</em></li>
+                </ul>
             </div>
         </section>
 
-        <!-- About Section -->
-        <section id="about" class="py-24 border-t border-white/5 reveal">
-            <div class="grid md:grid-cols-3 gap-12">
-                <div class="md:col-span-1">
-                    <h2 class="text-2xl font-bold text-white font-display uppercase tracking-widest text-sm opacity-50">Profile</h2>
-                </div>
-                <div class="md:col-span-2">
-                    <p class="text-xl text-zinc-300 leading-relaxed mb-6">
-                        Technical Support Engineer specialising in DNS infrastructure, domain lifecycle management, and platform-level incident resolution.
-                    </p>
-                    <p class="text-zinc-400 leading-relaxed mb-6">
-                        At Team Internet Group, I troubleshoot domain registration, transfer, and renewal workflows, diagnose DNS misconfigurations (A, CNAME, MX, TXT), and investigate propagation issues using tools like dig and nslookup. I analyse API and system logs, support VIP customers with escalated cases, assist with domain abuse investigations, and collaborate with engineering teams on platform bugs - working with registrar/registry protocols including EPP concepts and domain states.
-                    </p>
-                    <p class="text-zinc-400 leading-relaxed">
-                        I am pursuing an <span class="text-zinc-200">MA: IT Cyber Security</span> at Maria Curie-Skłodowska University, bridging hands-on support with advanced system defense studies.
-                    </p>
-                </div>
+        <!-- About -->
+        <section id="about" class="section section--split">
+            <div class="section__label" data-reveal>
+                <span class="section__index">01</span>
+                <h2>Profile</h2>
+            </div>
+            <div class="section__body" data-stagger>
+                <p class="lead">
+                    Technical Support Engineer specialising in DNS infrastructure, domain lifecycle management, and platform-level incident resolution.
+                </p>
+                <p>
+                    At Team Internet Group, I troubleshoot domain registration, transfer, and renewal workflows, diagnose DNS misconfigurations (A, CNAME, MX, TXT), and investigate propagation issues using tools like dig and nslookup. I analyse API and system logs, support VIP customers with escalated cases, assist with domain abuse investigations, and collaborate with engineering teams on platform bugs, working with registrar/registry protocols including EPP concepts and domain states.
+                </p>
+                <p>
+                    I am pursuing an <span class="hl">MA: IT Cyber Security</span> at Maria Curie-Skłodowska University, bridging hands-on support with advanced system defense studies.
+                </p>
             </div>
         </section>
 
         <!-- Certifications -->
-        <section id="certifications" class="py-24 border-t border-white/5 reveal">
-            <h2 class="text-2xl font-bold text-white mb-12 font-display">Certifications</h2>
-            <div class="grid md:grid-cols-2 gap-6 stagger-wrap">
-                <div class="glass-card p-6 rounded-xl border border-emerald-500/10 flex items-center space-x-4">
-                    <div class="text-emerald-500 bg-emerald-500/10 p-3 rounded-lg" aria-hidden="true">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
+        <section id="certifications" class="section">
+            <div class="section__head" data-reveal>
+                <span class="section__index">02</span>
+                <h2>Certifications</h2>
+            </div>
+            <div class="grid grid--2" data-stagger>
+                <div class="card cert" data-spotlight>
+                    <div class="cert__icon" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
                     </div>
                     <div>
-                        <h3 class="text-white font-bold">ITIL 4 Foundation</h3>
-                        <p class="text-zinc-500 text-xs">IT Service Management • ID: GR671843791OB</p>
+                        <h3>ITIL 4 Foundation</h3>
+                        <p>IT Service Management • ID: GR671843791OB</p>
                     </div>
                 </div>
-                <div class="glass-card p-6 rounded-xl border border-emerald-500/10 flex items-center space-x-4">
-                    <div class="text-emerald-500 bg-emerald-500/10 p-3 rounded-lg" aria-hidden="true">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-award"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/><circle cx="12" cy="8" r="6"/></svg>
+                <div class="card cert" data-spotlight>
+                    <div class="cert__icon" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/><circle cx="12" cy="8" r="6"/></svg>
                     </div>
                     <div>
-                        <h3 class="text-white font-bold">Google IT Support Professional</h3>
-                        <p class="text-zinc-500 text-xs">Issued Jun 2023 • ID: FCG2ZA2F72TN</p>
+                        <h3>Google IT Support Professional</h3>
+                        <p>Issued Jun 2023 • ID: FCG2ZA2F72TN</p>
                     </div>
                 </div>
-                <a href="https://www.credly.com/users/owusu-debrah-boateng/badges" target="_blank" rel="noopener noreferrer" class="glass-card p-6 rounded-xl border border-emerald-500/10 flex items-center space-x-4 hover:border-emerald-500/30 transition-colors">
-                    <div class="text-emerald-500 bg-emerald-500/10 p-3 rounded-lg" aria-hidden="true">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-network"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/></svg>
+                <a href="https://www.credly.com/users/owusu-debrah-boateng/badges" target="_blank" rel="noopener noreferrer" class="card cert cert--link" data-spotlight>
+                    <div class="cert__icon" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/></svg>
                     </div>
                     <div>
-                        <h3 class="text-white font-bold">Network Technician Career Path</h3>
-                        <p class="text-zinc-500 text-xs">Cisco • Issued Feb 2026</p>
+                        <h3>Network Technician Career Path</h3>
+                        <p>Cisco • Issued Feb 2026</p>
                     </div>
+                    <span class="cert__arrow" aria-hidden="true">↗</span>
                 </a>
-                <a href="https://www.credly.com/users/owusu-debrah-boateng/badges" target="_blank" rel="noopener noreferrer" class="glass-card p-6 rounded-xl border border-emerald-500/10 flex items-center space-x-4 hover:border-emerald-500/30 transition-colors">
-                    <div class="text-emerald-500 bg-emerald-500/10 p-3 rounded-lg" aria-hidden="true">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lock"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <a href="https://www.credly.com/users/owusu-debrah-boateng/badges" target="_blank" rel="noopener noreferrer" class="card cert cert--link" data-spotlight>
+                    <div class="cert__icon" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
                     </div>
                     <div>
-                        <h3 class="text-white font-bold">Introduction to Cybersecurity</h3>
-                        <p class="text-zinc-500 text-xs">Cisco • Issued Dec 2025</p>
+                        <h3>Introduction to Cybersecurity</h3>
+                        <p>Cisco • Issued Dec 2025</p>
                     </div>
+                    <span class="cert__arrow" aria-hidden="true">↗</span>
                 </a>
             </div>
         </section>
 
-        <!-- Professional History -->
-        <section id="experience" class="py-24 border-t border-white/5 reveal">
-            <h2 class="text-2xl font-bold text-white mb-12 font-display">Experience</h2>
-            
-            <div class="space-y-16 stagger-wrap">
-                <!-- Team Internet Group -->
-                <div class="grid md:grid-cols-4 gap-4 group">
-                    <div class="text-zinc-500 font-mono text-xs uppercase tracking-widest pt-1">Apr 2026 — Present</div>
-                    <div class="md:col-span-3">
-                        <h3 class="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors">Technical Support Engineer</h3>
-                        <p class="text-emerald-500 mb-6 font-medium tracking-tight">Team Internet Group · Domains & DNS Infrastructure</p>
-                        <ul class="text-zinc-400 space-y-4 text-sm leading-relaxed">
-                            <li class="flex gap-3"><span class="text-emerald-500 font-bold">/</span> Troubleshoot domain lifecycle issues including registration, transfer, and renewal workflows.</li>
-                            <li class="flex gap-3"><span class="text-emerald-500 font-bold">/</span> Diagnose DNS misconfigurations (A, CNAME, MX, TXT records) and investigate propagation issues using dig and nslookup.</li>
-                            <li class="flex gap-3"><span class="text-emerald-500 font-bold">/</span> Analyse API and system logs to resolve platform-level incidents, applying EPP concepts and domain state knowledge.</li>
-                            <li class="flex gap-3"><span class="text-emerald-500 font-bold">/</span> Assist with domain abuse investigations involving phishing, spam, impersonation, suspicious activity, and policy-related reports.</li>
-                            <li class="flex gap-3"><span class="text-emerald-500 font-bold">/</span> Support VIP customers with escalated technical cases and collaborate with engineering teams to track and resolve platform bugs.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Greenpeace -->
-                <div class="grid md:grid-cols-4 gap-4 group">
-                    <div class="text-zinc-500 font-mono text-xs uppercase tracking-widest pt-1">Jan 2023 — Sep 2024</div>
-                    <div class="md:col-span-3">
-                        <h3 class="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors">Technical Support</h3>
-                        <p class="text-emerald-500 mb-6 font-medium tracking-tight">Greenpeace Deutschland</p>
-                        <ul class="text-zinc-400 space-y-4 text-sm leading-relaxed">
-                            <li class="flex gap-3"><span class="text-emerald-500 font-bold">/</span> Diagnosed and resolved technical issues for end-users across digital infrastructure.</li>
-                            <li class="flex gap-3"><span class="text-emerald-500 font-bold">/</span> Logged and tracked user-reported bugs, ensuring prompt escalation and documentation.</li>
-                            <li class="flex gap-3"><span class="text-emerald-500 font-bold">/</span> Analyzed user behavior data to recommend reliability and system improvements.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- XFEL Updated -->
-                <div class="grid md:grid-cols-4 gap-4 group">
-                    <div class="text-zinc-500 font-mono text-xs uppercase tracking-widest pt-1">May 2019 — Dec 2023</div>
-                    <div class="md:col-span-3">
-                        <h3 class="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors">Foreign Language Tech Support Assistant</h3>
-                        <p class="text-zinc-500 mb-6 font-medium tracking-tight">European XFEL</p>
-                        <ul class="text-zinc-400 space-y-4 text-sm leading-relaxed">
-                            <li class="flex gap-3"><span class="text-emerald-500 font-bold">/</span> Managed website and internal display updates for accurate information distribution.</li>
-                            <li class="flex gap-3"><span class="text-emerald-500 font-bold">/</span> Provided multi-channel helpdesk support (Phone, Email, In-person).</li>
-                            <li class="flex gap-3"><span class="text-emerald-500 font-bold">/</span> Administered user accounts, databases, and digital records.</li>
-                            <li class="flex gap-3"><span class="text-emerald-500 font-bold">/</span> Authored user manuals, troubleshooting guides, and FAQs.</li>
-                        </ul>
-                    </div>
-                </div>
-
+        <!-- Experience -->
+        <section id="experience" class="section">
+            <div class="section__head" data-reveal>
+                <span class="section__index">03</span>
+                <h2>Experience</h2>
             </div>
+
+            <ol class="timeline" data-timeline>
+                <li class="timeline__rail" aria-hidden="true"><span class="timeline__fill"></span></li>
+
+                <li class="role" data-reveal>
+                    <span class="role__dot" aria-hidden="true"></span>
+                    <p class="role__date">Apr 2026 – Present</p>
+                    <div class="role__body">
+                        <h3>Technical Support Engineer</h3>
+                        <p class="role__org">Team Internet Group · Domains &amp; DNS Infrastructure</p>
+                        <ul>
+                            <li>Troubleshoot domain lifecycle issues including registration, transfer, and renewal workflows.</li>
+                            <li>Diagnose DNS misconfigurations (A, CNAME, MX, TXT records) and investigate propagation issues using dig and nslookup.</li>
+                            <li>Analyse API and system logs to resolve platform-level incidents, applying EPP concepts and domain state knowledge.</li>
+                            <li>Assist with domain abuse investigations involving phishing, spam, impersonation, suspicious activity, and policy-related reports.</li>
+                            <li>Support VIP customers with escalated technical cases and collaborate with engineering teams to track and resolve platform bugs.</li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="role" data-reveal>
+                    <span class="role__dot" aria-hidden="true"></span>
+                    <p class="role__date">Jan 2023 – Sep 2024</p>
+                    <div class="role__body">
+                        <h3>Technical Support</h3>
+                        <p class="role__org">Greenpeace Deutschland</p>
+                        <ul>
+                            <li>Diagnosed and resolved technical issues for end-users across digital infrastructure.</li>
+                            <li>Logged and tracked user-reported bugs, ensuring prompt escalation and documentation.</li>
+                            <li>Analyzed user behavior data to recommend reliability and system improvements.</li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="role" data-reveal>
+                    <span class="role__dot" aria-hidden="true"></span>
+                    <p class="role__date">May 2019 – Dec 2023</p>
+                    <div class="role__body">
+                        <h3>Foreign Language Tech Support Assistant</h3>
+                        <p class="role__org role__org--muted">European XFEL</p>
+                        <ul>
+                            <li>Managed website and internal display updates for accurate information distribution.</li>
+                            <li>Provided multi-channel helpdesk support (Phone, Email, In-person).</li>
+                            <li>Administered user accounts, databases, and digital records.</li>
+                            <li>Authored user manuals, troubleshooting guides, and FAQs.</li>
+                        </ul>
+                    </div>
+                </li>
+            </ol>
         </section>
 
         <!-- Toolkit & Education -->
-        <section id="skills" class="py-24 border-t border-white/5 reveal">
-            <div class="grid md:grid-cols-2 gap-16">
-                <!-- Skills -->
-                <div>
-                    <h2 class="text-2xl font-bold text-white mb-8 font-display">Technical Toolkit</h2>
-                    <div class="space-y-8">
-                        <div>
-                            <h4 class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 mb-4 font-bold">DNS & Domains</h4>
-                            <div class="flex flex-wrap gap-3">
-                                <span class="badge text-emerald-400">DNS Troubleshooting (A, CNAME, MX, TXT)</span>
-                                <span class="badge text-emerald-400">Domain Lifecycle (Registration, Transfer, Renewal)</span>
-                                <span class="badge">EPP / Registrar Protocols</span>
-                                <span class="badge">dig & nslookup</span>
-                                <span class="badge text-emerald-400">Domain Abuse Investigation</span>
-                            </div>
-                        </div>
-                        <div>
-                            <h4 class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 mb-4 font-bold">Incident & Escalation</h4>
-                            <div class="flex flex-wrap gap-3">
-                                <span class="badge">IT Support & Incident Handling</span>
-                                <span class="badge text-emerald-400">Log & System Behavior Analysis</span>
-                                <span class="badge">Zendesk</span>
-                                <span class="badge">Bug Tracking & Escalation</span>
-                                <span class="badge">VIP Customer Support</span>
-                            </div>
-                        </div>
-                        <div>
-                            <h4 class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 mb-4 font-bold">Security-Aware Investigation</h4>
-                            <div class="flex flex-wrap gap-3">
-                                <span class="badge">Phishing & Spam Reports</span>
-                                <span class="badge">Impersonation Signals</span>
-                                <span class="badge">Suspicious Activity Review</span>
-                                <span class="badge">Linux Systems (Academic Exposure)</span>
-                            </div>
-                        </div>
-                        <div>
-                            <h4 class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 mb-4 font-bold">Customer & Documentation</h4>
-                            <div class="flex flex-wrap gap-3">
-                                <span class="badge">Technical Documentation</span>
-                                <span class="badge">Pattern Analysis (User Data)</span>
-                                <span class="badge">Database Mgmt (Basic)</span>
-                                <span class="badge">ITIL 4 Foundation</span>
-                            </div>
-                        </div>
+        <section id="skills" class="section">
+            <div class="section__head" data-reveal>
+                <span class="section__index">04</span>
+                <h2>Technical Toolkit</h2>
+            </div>
+            <div class="toolkit">
+                <div class="toolkit__groups">
+                    <div class="chip-group" data-chips>
+                        <h3 class="eyebrow">DNS &amp; Domains</h3>
+                        <ul class="chips">
+                            <li class="chip chip--hot">DNS Troubleshooting (A, CNAME, MX, TXT)</li>
+                            <li class="chip chip--hot">Domain Lifecycle (Registration, Transfer, Renewal)</li>
+                            <li class="chip">EPP / Registrar Protocols</li>
+                            <li class="chip">dig &amp; nslookup</li>
+                            <li class="chip chip--hot">Domain Abuse Investigation</li>
+                        </ul>
+                    </div>
+                    <div class="chip-group" data-chips>
+                        <h3 class="eyebrow">Incident &amp; Escalation</h3>
+                        <ul class="chips">
+                            <li class="chip">IT Support &amp; Incident Handling</li>
+                            <li class="chip chip--hot">Log &amp; System Behavior Analysis</li>
+                            <li class="chip">Zendesk</li>
+                            <li class="chip">Bug Tracking &amp; Escalation</li>
+                            <li class="chip">VIP Customer Support</li>
+                        </ul>
+                    </div>
+                    <div class="chip-group" data-chips>
+                        <h3 class="eyebrow">Security-Aware Investigation</h3>
+                        <ul class="chips">
+                            <li class="chip">Phishing &amp; Spam Reports</li>
+                            <li class="chip">Impersonation Signals</li>
+                            <li class="chip">Suspicious Activity Review</li>
+                            <li class="chip">Linux Systems (Academic Exposure)</li>
+                        </ul>
+                    </div>
+                    <div class="chip-group" data-chips>
+                        <h3 class="eyebrow">Customer &amp; Documentation</h3>
+                        <ul class="chips">
+                            <li class="chip">Technical Documentation</li>
+                            <li class="chip">Pattern Analysis (User Data)</li>
+                            <li class="chip">Database Mgmt (Basic)</li>
+                            <li class="chip">ITIL 4 Foundation</li>
+                        </ul>
                     </div>
                 </div>
 
-                <!-- Education -->
-                <div>
-                    <h2 class="text-2xl font-bold text-white mb-8 font-display">Academic Path</h2>
-                    <div class="space-y-8">
-                        <div class="relative pl-8 border-l border-emerald-500/30">
-                            <div class="absolute w-2 h-2 bg-emerald-500 rounded-full -left-[5px] top-2 shadow-[0_0_10px_#10b981]"></div>
-                            <h4 class="text-white font-bold">MA: IT Cyber Security</h4>
-                            <p class="text-zinc-500 text-sm">UMCS Lublin • Oct 2025 – Present</p>
-                        </div>
-                        <div class="relative pl-8 border-l border-zinc-800">
-                            <div class="absolute w-2 h-2 bg-zinc-700 rounded-full -left-[5px] top-2"></div>
-                            <h4 class="text-white font-bold text-sm">Bachelor of Arts: Digital Media</h4>
-                            <p class="text-zinc-500 text-xs">Leuphana University of Lüneburg</p>
-                        </div>
-                        <div class="relative pl-8 border-l border-zinc-800">
-                            <div class="absolute w-2 h-2 bg-zinc-700 rounded-full -left-[5px] top-2"></div>
-                            <h4 class="text-white font-bold text-sm">BSc: Information Engineering</h4>
-                            <p class="text-zinc-500 text-xs">HAW Hamburg</p>
-                        </div>
-                    </div>
+                <div class="academic card" data-reveal>
+                    <h3 class="academic__title">Academic Path</h3>
+                    <ol class="academic__list" data-stagger>
+                        <li class="academic__item academic__item--current">
+                            <h4>MA: IT Cyber Security</h4>
+                            <p>UMCS Lublin • Oct 2025 – Present</p>
+                        </li>
+                        <li class="academic__item">
+                            <h4>Bachelor of Arts: Digital Media</h4>
+                            <p>Leuphana University of Lüneburg</p>
+                        </li>
+                        <li class="academic__item">
+                            <h4>BSc: Information Engineering</h4>
+                            <p>HAW Hamburg</p>
+                        </li>
+                    </ol>
                 </div>
             </div>
         </section>
 
         <!-- Selected Work -->
-        <section id="projects" class="py-24 border-t border-white/5 reveal">
-            <div class="flex items-center justify-between mb-12">
-                <h2 class="text-2xl font-bold text-white font-display">Selected Work</h2>
+        <section id="projects" class="section">
+            <div class="section__head" data-reveal>
+                <span class="section__index">05</span>
+                <h2>Selected Work</h2>
             </div>
-            
-            <div class="grid md:grid-cols-2 gap-8 stagger-wrap">
-                <!-- Project 1 -->
-                <div class="glass-card rounded-2xl p-8 flex flex-col h-full group">
-                    <h3 class="text-xl font-bold text-white mb-4 group-hover:text-emerald-400 transition-colors">
-                        MoodPlant <span class="text-emerald-500/50 mx-2">/</span> Reliability & Incident Thinking
-                    </h3>
-                    <p class="text-zinc-400 mb-8 text-sm leading-relaxed flex-grow">
+
+            <div class="grid grid--2" data-stagger>
+                <article class="card project" data-spotlight data-tilt>
+                    <p class="project__kicker">Reliability &amp; Incident Thinking</p>
+                    <h3>MoodPlant</h3>
+                    <p class="project__text">
                         Backend integration and system-state work framed around the support questions that matter in production: what changed, what failed, and how incidents can be prevented earlier.
                     </p>
-                    <div class="flex items-center justify-between">
-                        <div class="flex space-x-2">
-                            <span class="badge">Firebase</span>
-                            <span class="badge">Troubleshooting</span>
-                        </div>
-                        <a href="https://moodplant.app" target="_blank" rel="noopener noreferrer" class="text-emerald-500 text-xs font-bold uppercase tracking-widest hover:underline flex items-center">
+                    <div class="project__foot">
+                        <ul class="chips chips--small">
+                            <li class="chip">Firebase</li>
+                            <li class="chip">Troubleshooting</li>
+                        </ul>
+                        <a href="https://moodplant.app" target="_blank" rel="noopener noreferrer" class="text-link">
                             Visit Live Site
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M9 7h8v8" /></svg>
                         </a>
                     </div>
-                </div>
+                </article>
 
-                <!-- Project 2 -->
-                <div class="glass-card rounded-2xl p-8 flex flex-col h-full group">
-                    <h3 class="text-xl font-bold text-white mb-4 group-hover:text-emerald-400 transition-colors">
-                        Subverse <span class="text-emerald-500/50 mx-2">/</span> Trust & Security Research
-                    </h3>
-                    <p class="text-zinc-400 mb-8 text-sm leading-relaxed flex-grow">
+                <article class="card project" data-spotlight data-tilt>
+                    <p class="project__kicker">Trust &amp; Security Research</p>
+                    <h3>Subverse</h3>
+                    <p class="project__text">
                         Research into adversarial trust, perception, and automated content generation, with emphasis on how people evaluate signals, credibility, and security risk online.
                     </p>
-                    <div class="flex items-center justify-between">
-                        <div class="flex space-x-2">
-                            <span class="badge">Security Ethics</span>
-                            <span class="badge">Research</span>
-                        </div>
+                    <div class="project__foot">
+                        <ul class="chips chips--small">
+                            <li class="chip">Security Ethics</li>
+                            <li class="chip">Research</li>
+                        </ul>
                     </div>
-                </div>
+                </article>
             </div>
         </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="py-24 border-t border-white/5 reveal text-center">
-            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 font-display">Let's connect.</h2>
-            <p class="text-zinc-400 mb-10 max-w-lg mx-auto">
+        <!-- Contact -->
+        <section id="contact" class="section contact">
+            <p class="section__index" data-reveal>06</p>
+            <h2 class="contact__title" data-split>Let's connect.</h2>
+            <p class="contact__text" data-reveal>
                 Open to collaboration, security research discussions, and connecting with others in the DNS, infrastructure, and cybersecurity space.
             </p>
-            <div class="flex flex-col md:flex-row items-center justify-center gap-6">
-                <a href="mailto:owusutech@gmail.com" class="text-white hover:text-emerald-500 text-lg underline decoration-zinc-800 underline-offset-8 transition-all">Email Contact</a>
-                <a href="https://github.com/PushDream" target="_blank" rel="noopener noreferrer" class="text-white hover:text-emerald-500 text-lg underline decoration-zinc-800 underline-offset-8 transition-all">GitHub</a>
-                <a href="https://www.linkedin.com/in/owusu-boateng/" target="_blank" rel="noopener noreferrer" class="text-white hover:text-emerald-500 text-lg underline decoration-zinc-800 underline-offset-8 transition-all">LinkedIn Profile</a>
+            <div class="contact__email" data-reveal>
+                <a href="mailto:owusutech@gmail.com" class="contact__address">owusutech@gmail.com</a>
+                <button type="button" class="copy-btn" data-copy="owusutech@gmail.com" aria-label="Copy email address">
+                    <span class="copy-btn__label">Copy</span>
+                </button>
             </div>
+            <div class="contact__links" data-stagger>
+                <a href="mailto:owusutech@gmail.com" class="btn btn--primary" data-magnetic>Email Contact</a>
+                <a href="https://github.com/PushDream" target="_blank" rel="noopener noreferrer" class="btn btn--ghost" data-magnetic>GitHub</a>
+                <a href="https://www.linkedin.com/in/owusu-boateng/" target="_blank" rel="noopener noreferrer" class="btn btn--ghost" data-magnetic>LinkedIn Profile</a>
+            </div>
+            <p class="sr-status" role="status" aria-live="polite" data-copy-status></p>
         </section>
 
     </main>
 
+    <footer class="footer">
+        <div class="container footer__inner">
+            <p>© <span data-year>2026</span> Owusu-Debrah Boateng · Lublin, Poland</p>
+            <p><a href="techy.html">Techy Mode</a> · <a href="cv.pdf" download>CV (PDF)</a></p>
+        </div>
+    </footer>
+
     <!-- Sticky Contact Bar -->
-    <div class="fixed bottom-0 w-full z-40 sticky-contact px-6 py-4">
-        <div class="max-w-5xl mx-auto flex items-center justify-between">
-            <div class="hidden sm:block">
-                <p class="text-[10px] uppercase tracking-widest text-zinc-500 font-bold">owusutech@gmail.com</p>
-            </div>
-            <div class="flex items-center space-x-8 text-sm font-medium">
-                <a href="mailto:owusutech@gmail.com" class="text-white hover:text-emerald-500 transition-colors flex items-center">
-                    Email
-                </a>
-                <a href="https://github.com/PushDream" target="_blank" rel="noopener noreferrer" class="text-white hover:text-emerald-500 transition-colors flex items-center">
-                    GitHub
-                </a>
-                <a href="https://www.linkedin.com/in/owusu-boateng/" target="_blank" rel="noopener noreferrer" class="text-white hover:text-emerald-500 transition-colors flex items-center">
-                    LinkedIn
-                </a>
+    <div class="contact-bar" data-contact-bar>
+        <div class="contact-bar__inner">
+            <p class="contact-bar__email">owusutech@gmail.com</p>
+            <div class="contact-bar__links">
+                <a href="mailto:owusutech@gmail.com">Email</a>
+                <a href="https://github.com/PushDream" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://www.linkedin.com/in/owusu-boateng/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             </div>
         </div>
     </div>
-
-    <script>
-        // 1. Scroll progress bar
-        const progressBar = document.getElementById('scroll-progress');
-        function updateProgress() {
-            const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            if (docHeight > 0) progressBar.style.width = (scrollTop / docHeight * 100) + '%';
-        }
-        window.addEventListener('scroll', updateProgress, { passive: true });
-
-        // 2. Scroll reveal (IntersectionObserver — better performance on mobile)
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    revealObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.05, rootMargin: '0px 0px -60px 0px' });
-
-        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-        // 3. Active nav highlighting (desktop)
-        const navLinks = document.querySelectorAll('.nav-link');
-        const sectionObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    navLinks.forEach(link => {
-                        link.classList.toggle(
-                            'active-section',
-                            link.getAttribute('href') === '#' + entry.target.id
-                        );
-                    });
-                }
-            });
-        }, { threshold: 0.35 });
-
-        document.querySelectorAll('section[id]').forEach(s => sectionObserver.observe(s));
-
-        // 4. Staggered child reveals
-        // Auto-tag direct children of stagger-wrap
-        document.querySelectorAll('.stagger-wrap').forEach(wrap => {
-            Array.from(wrap.children).forEach(child => child.classList.add('stagger-item'));
-        });
-
-        const staggerObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const items = entry.target.querySelectorAll('.stagger-item');
-                    // Shorter delay on mobile so it feels snappy
-                    const delay = window.innerWidth < 768 ? 80 : 120;
-                    items.forEach((item, i) => {
-                        setTimeout(() => item.classList.add('active'), i * delay);
-                    });
-                    staggerObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-
-        document.querySelectorAll('.stagger-wrap').forEach(wrap => staggerObserver.observe(wrap));
-
-        // Mobile menu functionality
-        const menuToggle = document.getElementById('menu-toggle');
-        const menuClose = document.getElementById('menu-close');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileNavItems = document.querySelectorAll('.mobile-nav-item');
-
-        const closeMobileMenu = () => {
-            mobileMenu.classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        };
-
-        menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        });
-
-        menuClose.addEventListener('click', closeMobileMenu);
-        mobileNavItems.forEach(item => item.addEventListener('click', closeMobileMenu));
-    </script>
 
 </body>
 </html>
