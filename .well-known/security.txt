@@ -1,7 +1,7 @@
 Contact: mailto:owusutech@gmail.com
+Expires: 2027-11-23T23:00:00.000Z
 Preferred-Languages: en, de
-Canonical: https://pushdream.github.io/.well-known/security.txt
-Expires: 2026-12-31T23:59:59.000Z
+Canonical: https://owusuboateng.me/.well-known/security.txt
 
 # Security Policy
 # This is a personal portfolio website with no user data collection or processing.

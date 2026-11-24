@@ -1,0 +1,621 @@
+/* Source for assets/css/techy.css (npm run build:techy). Tailwind utilities first, then the Techy Mode styles. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --neon: #10b981;
+    --bg: #050505;
+    --panel: #0a0a0a;
+}
+
+body {
+    background-color: var(--bg);
+    color: #efefef;
+    font-family: 'JetBrains Mono', monospace;
+    overflow-x: hidden;
+    cursor: none;
+}
+
+.font-display {
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+/* Noise & Scanlines */
+.noise {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../img/noise.svg');
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.scanlines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 9998;
+}
+
+/* Custom Cursor Reticle */
+#cursor-main {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: var(--neon);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10000;
+    transition: transform 0.1s ease;
+}
+
+#cursor-follower {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--neon);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#cursor-follower::after,
+#cursor-follower::before {
+    content: '';
+    position: absolute;
+    background: var(--neon);
+}
+
+#cursor-follower::after {
+    width: 100%;
+    height: 1px;
+}
+
+#cursor-follower::before {
+    width: 1px;
+    height: 100%;
+}
+
+/* Binary Rain Canvas */
+#binary-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    opacity: 0.15;
+}
+
+.grid-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(16, 185, 129, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(16, 185, 129, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    z-index: -1;
+}
+
+/* Tech-Notched Corners */
+.tech-box {
+    clip-path: polygon(0% 20px, 20px 0%,
+            calc(100% - 20px) 0%, 100% 20px,
+            100% calc(100% - 20px), calc(100% - 20px) 100%,
+            20px 100%, 0% calc(100% - 20px));
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    background: rgba(10, 10, 10, 0.6);
+    backdrop-filter: blur(10px);
+    transition: all 0.4s ease;
+}
+
+.tech-box:hover {
+    border-color: var(--neon);
+    background: rgba(16, 185, 129, 0.05);
+}
+
+.hero-glitch {
+    position: relative;
+    animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+    0% {
+        transform: skew(0deg);
+    }
+
+    2% {
+        transform: skew(3deg);
+    }
+
+    4% {
+        transform: skew(-2deg);
+    }
+
+    5% {
+        transform: skew(0deg);
+    }
+
+    100% {
+        transform: skew(0deg);
+    }
+}
+
+/* ENHANCED GLITCH EFFECT - DISABLED FOR CLEANER LOOK */
+/* User prefers subtler effects without RGB split */
+
+/* CRT FLICKER */
+@keyframes flicker {
+    0% {
+        opacity: 0.97;
+    }
+
+    5% {
+        opacity: 0.94;
+    }
+
+    10% {
+        opacity: 0.98;
+    }
+
+    15% {
+        opacity: 0.95;
+    }
+
+    20% {
+        opacity: 0.97;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+body::before {
+    content: " ";
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(18, 16, 16, 0.1);
+    opacity: 0;
+    z-index: 9997;
+    pointer-events: none;
+    animation: flicker 0.15s infinite;
+}
+
+/* HOLOGRAPHIC SHIFT */
+.holo-card {
+    background: linear-gradient(135deg,
+            rgba(16, 185, 129, 0.1) 0%,
+            rgba(16, 185, 129, 0.05) 50%,
+            rgba(139, 92, 246, 0.1) 100%);
+    transition: all 0.5s ease;
+}
+
+.holo-card:hover {
+    background: linear-gradient(135deg,
+            rgba(139, 92, 246, 0.1) 0%,
+            rgba(16, 185, 129, 0.05) 50%,
+            rgba(16, 185, 129, 0.1) 100%);
+}
+
+/* Shake Animation for Konami Code */
+@keyframes shake {
+    0% {
+        transform: translate(1px, 1px) rotate(0deg);
+    }
+
+    10% {
+        transform: translate(-1px, -2px) rotate(-1deg);
+    }
+
+    20% {
+        transform: translate(-3px, 0px) rotate(1deg);
+    }
+
+    30% {
+        transform: translate(3px, 2px) rotate(0deg);
+    }
+
+    40% {
+        transform: translate(1px, -1px) rotate(1deg);
+    }
+
+    50% {
+        transform: translate(-1px, 2px) rotate(-1deg);
+    }
+
+    60% {
+        transform: translate(-3px, 1px) rotate(0deg);
+    }
+
+    70% {
+        transform: translate(3px, 1px) rotate(-1deg);
+    }
+
+    80% {
+        transform: translate(-1px, -1px) rotate(1deg);
+    }
+
+    90% {
+        transform: translate(1px, 2px) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(1px, -2px) rotate(-1deg);
+    }
+}
+
+.shake {
+    animation: shake 0.5s;
+    animation-iteration-count: infinite;
+}
+
+/* NEON TRAIL */
+.cursor-trail {
+    position: fixed;
+    width: 4px;
+    height: 4px;
+    background: var(--neon);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    box-shadow: 0 0 10px var(--neon);
+    opacity: 0;
+    animation: trail-fade 0.5s ease-out forwards;
+}
+
+@keyframes trail-fade {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+
+/* HEXADECIMAL COUNTER */
+.hex-counter {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--neon);
+    letter-spacing: 2px;
+}
+
+/* BOOT SCREEN */
+#boot-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--neon);
+    overflow: hidden;
+}
+
+.boot-line {
+    margin-bottom: 8px;
+    opacity: 0;
+    animation: boot-fadein 0.3s forwards;
+}
+
+@keyframes boot-fadein {
+    to {
+        opacity: 1;
+    }
+}
+
+/* DATA STREAM */
+.data-stream {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 100%;
+    overflow: hidden;
+    opacity: 0.1;
+    z-index: -1;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--neon);
+    line-height: 1.2;
+    pointer-events: none;
+}
+
+/* TYPING CURSOR */
+.typing-cursor::after {
+    content: '▮';
+    animation: blink 1s infinite;
+    color: var(--neon);
+}
+
+@keyframes blink {
+
+    0%,
+    49% {
+        opacity: 1;
+    }
+
+    50%,
+    100% {
+        opacity: 0;
+    }
+}
+
+/* RADAR PING */
+@keyframes radar-ping {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(3);
+        opacity: 0;
+    }
+}
+
+.radar-ping::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid var(--neon);
+    animation: radar-ping 2s ease-out infinite;
+}
+
+.status-tag {
+    background: rgba(16, 185, 129, 0.1);
+    border-left: 4px solid var(--neon);
+    color: var(--neon);
+    font-size: 10px;
+    padding: 4px 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+/* Scroll Progress HUD */
+#hud-scroll {
+    position: fixed;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    z-index: 100;
+}
+
+.scroll-dot {
+    width: 4px;
+    height: 4px;
+    background: #333;
+    transition: all 0.3s ease;
+}
+
+.scroll-dot.active {
+    background: var(--neon);
+    box-shadow: 0 0 10px var(--neon);
+    transform: scale(2);
+}
+
+/* Terminal Window */
+.terminal-header {
+    background: #1a1a1a;
+    padding: 8px 15px;
+    display: flex;
+    gap: 8px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.red {
+    background: #ff5f56;
+}
+
+.yellow {
+    background: #ffbd2e;
+}
+
+.green {
+    background: #27c93f;
+}
+
+.terminal-body {
+    height: 200px;
+    overflow-y: hidden;
+    padding: 15px;
+    font-size: 12px;
+    color: #888;
+}
+
+.terminal-line {
+    margin-bottom: 4px;
+}
+
+.terminal-line.cmd {
+    color: var(--neon);
+}
+
+.magnetic-wrap {
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.badge {
+    font-size: 0.7rem;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #a1a1aa;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.theme-toggle {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    z-index: 1000;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid var(--neon);
+    padding: 8px 16px;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: var(--neon);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.theme-toggle:hover {
+    background: var(--neon);
+    color: #000;
+}
+
+/* MOBILE OPTIMIZATIONS */
+@media (max-width: 768px) {
+    .theme-toggle {
+        bottom: 20px;
+        left: 20px;
+        font-size: 8px;
+        padding: 6px 12px;
+    }
+
+    /* Disable heavy effects on mobile for performance */
+    #binary-canvas {
+        opacity: 0.05;
+        /* Reduce intensity */
+    }
+
+    .cursor-trail {
+        display: none;
+        /* Disable cursor trails on mobile */
+    }
+
+    #cursor-main,
+    #cursor-follower {
+        display: none;
+        /* Use default cursor on mobile */
+    }
+
+    body {
+        cursor: auto !important;
+        /* Restore default cursor */
+    }
+
+    .data-stream {
+        display: none;
+        /* Hide data stream on mobile */
+    }
+
+    .scanlines {
+        opacity: 0.3;
+        /* Reduce scanline intensity */
+    }
+
+    /* Reduce animation complexity */
+    .hero-glitch {
+        animation: none;
+    }
+
+    /* Simplify boot screen on mobile */
+    #boot-screen {
+        font-size: 12px;
+        padding: 20px;
+    }
+
+    .boot-line {
+        margin-bottom: 6px;
+    }
+}
+
+/* Extra small screens - name responsiveness */
+@media (max-width: 640px) {
+    #hero h1 {
+        font-size: 2.5rem !important;
+        /* Smaller than text-5xl */
+        line-height: 1.1;
+        word-break: break-word;
+        hyphens: manual;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 380px) {
+    #hero h1 {
+        font-size: 2rem !important;
+        letter-spacing: -0.02em;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) {
+    .cursor-trail {
+        display: none;
+    }
+
+    #cursor-main,
+    #cursor-follower {
+        display: none;
+    }
+
+    body {
+        cursor: auto !important;
+    }
+
+    /* Disable hover effects on touch devices */
+    .holo-card:hover {
+        background: linear-gradient(135deg,
+                rgba(16, 185, 129, 0.1) 0%,
+                rgba(16, 185, 129, 0.05) 50%,
+                rgba(139, 92, 246, 0.1) 100%);
+    }
+}
+
+/* Boot sequence timing (was inline style attributes) */
+#boot-screen .boot-d0 { animation-delay: 0.0s; }
+#boot-screen .boot-d1 { animation-delay: 0.3s; }
+#boot-screen .boot-d2 { animation-delay: 0.6s; }
+#boot-screen .boot-d3 { animation-delay: 0.9s; }
+#boot-screen .boot-d4 { animation-delay: 1.2s; }
+#boot-screen .boot-d5 { animation-delay: 1.5s; }
+#boot-screen .boot-d6 { animation-delay: 1.8s; }
+#boot-screen .boot-d7 { animation-delay: 2.1s; }
+#boot-screen .boot-d8 { animation-delay: 2.4s; }
+#boot-screen .boot-d9 { animation-delay: 2.7s; }

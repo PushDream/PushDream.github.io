@@ -15,9 +15,11 @@ This portfolio presents my professional experience, technical background, certif
 - Vanilla JavaScript with [Motion](https://motion.dev) for animations
 - GitHub Pages
 
-The main page (`index.html`) has no third-party scripts. The animation code in
-`src/site.js` is bundled with Motion into `assets/js/site.js`, which is committed,
-so GitHub Pages needs no build step. To change the animations:
+Neither page loads third-party scripts. The animation code in `src/site.js` is
+bundled with Motion into `assets/js/site.js`. Techy Mode's Tailwind styles are
+built from `src/techy.css` into `assets/css/techy.css`, and its GSAP files are
+copied into `assets/js/vendor/`. All of these are committed, so GitHub Pages
+needs no build step. To rebuild after a change:
 
 ```
 npm install
@@ -27,8 +29,15 @@ npm run build
 Animations respect `prefers-reduced-motion`, and every element is shown normally
 if JavaScript is off or fails to load.
 
+## Security
+- Both pages set a Content-Security-Policy that only allows scripts from this site.
+  GitHub Pages cannot send custom headers, so the policy is a meta tag.
+- The terminal on the main page may only contact the Cloudflare and Google
+  DNS-over-HTTPS resolvers, and treats everything typed as plain text.
+- Security contact: `/.well-known/security.txt`.
+
 ## Hosting
-The site is hosted on **GitHub Pages** with a custom domain and HTTPS enabled.
+The site is hosted on **GitHub Pages** with a custom domain and HTTPS enforced.
 
 ## Contact
 - Portfolio: https://owusuboateng.me
