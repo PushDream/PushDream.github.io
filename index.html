@@ -131,14 +131,14 @@
     </script>
 
     <title>Owusu-Debrah Boateng | Technical Support & Security</title>
-    <meta name="theme-color" content="#f3f0e8">
+    <meta name="theme-color" content="#ffffff">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,600;0,800;1,400&family=Atkinson+Hyperlegible+Mono:wght@400;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="assets/css/site.css">
 
@@ -160,272 +160,234 @@
 </head>
 <body>
 
-    <div class="scroll-progress" aria-hidden="true"></div>
-
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <!-- Masthead -->
-    <header class="masthead" data-nav>
-        <div class="masthead__inner wrap">
-            <a href="#top" class="logo" aria-label="Owusu-Debrah Boateng, back to top">O<span>.</span>B</a>
-            <nav class="nav__links" aria-label="Sections">
-                <a href="#about" class="nav__link"><span aria-hidden="true">01</span>About</a>
-                <a href="#experience" class="nav__link"><span aria-hidden="true">02</span>Experience</a>
-                <a href="#skills" class="nav__link"><span aria-hidden="true">03</span>Toolkit</a>
-                <a href="#projects" class="nav__link"><span aria-hidden="true">04</span>Selected Work</a>
-                <a href="#contact" class="nav__link"><span aria-hidden="true">05</span>Contact</a>
+    <header class="topbar" data-nav>
+        <div class="topbar__inner wrap">
+            <a href="#top" class="topbar__home" aria-label="Owusu-Debrah Boateng, back to top">owusuboateng.me</a>
+            <nav class="topbar__nav" aria-label="Sections">
+                <a href="#about" class="nav__link">About</a>
+                <a href="#projects" class="nav__link">Work</a>
+                <a href="#experience" class="nav__link">Experience</a>
+                <a href="#skills" class="nav__link">Toolkit</a>
+                <a href="#contact" class="nav__link">Contact</a>
             </nav>
-            <div class="masthead__right">
-                <p class="masthead__clock" aria-label="Local time in Lublin">Lublin <span data-clock></span></p>
-                <a href="techy.html" class="mode-link">Techy Mode</a>
+            <div class="topbar__right">
+                <a href="techy.html" class="topbar__mode">Techy Mode</a>
+                <a href="cv.pdf" download class="topbar__cv">CV (PDF)</a>
                 <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" data-menu-open>Menu</button>
             </div>
         </div>
     </header>
 
-    <!-- Mobile Menu -->
     <div id="mobile-menu" class="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu" hidden>
         <button class="mobile-menu__close" type="button" aria-label="Close menu" data-menu-close>Close</button>
         <nav class="mobile-menu__links" aria-label="Sections">
-            <a href="#about" class="mobile-menu__link"><span>01</span>About</a>
-            <a href="#experience" class="mobile-menu__link"><span>02</span>Experience</a>
-            <a href="#skills" class="mobile-menu__link"><span>03</span>Toolkit</a>
-            <a href="#projects" class="mobile-menu__link"><span>04</span>Selected Work</a>
-            <a href="#contact" class="mobile-menu__link"><span>05</span>Contact</a>
+            <a href="#about" class="mobile-menu__link">About</a>
+            <a href="#projects" class="mobile-menu__link">Work</a>
+            <a href="#experience" class="mobile-menu__link">Experience</a>
+            <a href="#skills" class="mobile-menu__link">Toolkit</a>
+            <a href="#contact" class="mobile-menu__link">Contact</a>
         </nav>
         <p class="mobile-menu__foot"><a href="techy.html">Techy Mode</a> · <a href="cv.pdf" download>CV (PDF)</a></p>
     </div>
 
     <main id="main-content">
 
-        <!-- Hero -->
+        <!-- Intro -->
         <section id="top" class="hero wrap">
-            <div class="hero__top" data-hero-item>
-                <p class="status-chip">
+            <div class="hero__intro">
+                <p class="hero__meta status-chip">
                     <span class="status-dot" aria-hidden="true"></span>
                     <span>Technical Support Engineer • Team Internet Group</span>
+                    <span class="hero__place">Lublin, Poland</span>
                 </p>
-                <p class="hero__place">Lublin, Poland</p>
+                <h1 class="hero__name">Owusu-Debrah Boateng</h1>
+                <p class="hero__lead">
+                    <strong>Technical Support Engineer, Domains &amp; DNS | MA: IT Cyber Security (UMCS)</strong>
+                    Troubleshooting DNS and domain workflows, resolving platform-level incidents, and building toward cybersecurity practice through graduate study.
+                </p>
+                <p class="hero__actions">
+                    <a href="#contact" class="btn btn--solid">Contact Me</a>
+                    <a href="cv.pdf" download class="btn btn--line">Download CV</a>
+                </p>
             </div>
 
-            <h1 class="hero__title">
-                <span class="hero__name" data-fit>
-                    <span class="hero__line"><span data-line>Owusu-Debrah</span></span>
-                    <span class="hero__line"><span data-line>Boateng</span></span>
-                </span>
-                <span class="hero__tagline" data-split>Technical support at the edge of infrastructure and security.</span>
-            </h1>
-
-            <div class="rule" data-rule aria-hidden="true"></div>
-
-            <div class="hero__grid">
-                <div class="hero__text">
-                    <p class="hero__lead" data-hero-item>
-                        <strong>Technical Support Engineer, Domains &amp; DNS | MA: IT Cyber Security (UMCS)</strong><br>
-                        Troubleshooting DNS and domain workflows, resolving platform-level incidents, and building toward cybersecurity practice through graduate study.
-                    </p>
-                    <div class="hero__actions" data-hero-item>
-                        <a href="#contact" class="btn btn--primary" data-magnetic>Contact Me</a>
-                        <a href="cv.pdf" download class="btn btn--ghost" data-magnetic>
-                            Download CV
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v12m0 0l-5-5m5 5l5-5M5 20h14"/></svg>
-                        </a>
-                    </div>
+            <!-- A working terminal. Page commands are answered from this page's own sections,
+                 and dig asks a public DNS-over-HTTPS resolver from the visitor's browser (src/terminal.js). -->
+            <div class="terminal" data-term>
+                <div class="terminal__bar">
+                    <p>~/owusuboateng.me</p>
+                    <p class="terminal__note">try <kbd>help</kbd> or <kbd>dig example.com mx</kbd></p>
                 </div>
-
-                <!-- Terminal card: an intro that types itself, then a prompt visitors can use.
-                     Command answers are read from this page's own sections (src/terminal.js). -->
-                <div class="terminal" data-hero-item data-term>
-                    <div class="terminal__bar" aria-hidden="true">
-                        <span></span><span></span><span></span>
-                        <p>~/owusuboateng.me</p>
-                    </div>
-                    <div class="terminal__body" data-term-body>
-                        <pre class="terminal__intro" data-terminal aria-hidden="true"><code><span class="t-line"><span class="t-prompt">$</span> whoami</span>
+                <div class="terminal__body" data-term-body>
+                    <pre class="terminal__intro" data-terminal aria-hidden="true"><code><span class="t-line"><span class="t-prompt">$</span> whoami</span>
 <span class="t-line t-out">owusu-debrah boateng</span>
 <span class="t-line"><span class="t-prompt">$</span> role --current</span>
 <span class="t-line t-out">Technical Support Engineer @ Team Internet Group</span>
-<span class="t-line"><span class="t-prompt">$</span> focus --list</span>
-<span class="t-line t-out">dns  domains  incidents  security</span>
-<span class="t-line"><span class="t-prompt">$</span> study</span>
-<span class="t-line t-out">MA: IT Cyber Security, UMCS Lublin</span>
 <span class="t-line" data-term-idle><span class="t-prompt">$</span> <span class="t-cursor"></span></span></code></pre>
-                        <div class="terminal__log" data-term-log role="log" aria-live="polite" aria-label="Terminal output"></div>
-                        <form class="terminal__form" data-term-form hidden>
-                            <span class="t-prompt" aria-hidden="true">$</span>
-                            <span class="sr-only" id="term-label">Terminal. Type a command such as help, then press Enter.</span>
-                            <input id="term-input" class="terminal__input" type="text" name="command"
-                                aria-labelledby="term-label" autocomplete="off" autocapitalize="off"
-                                autocorrect="off" spellcheck="false" enterkeyhint="go" maxlength="64">
-                        </form>
-                    </div>
-                    <div class="terminal__chips" data-term-chips hidden>
-                        <p class="terminal__hint">Type a command, or tap one:</p>
-                        <div class="terminal__chiprow">
-                            <button type="button" data-cmd="help">help</button>
-                            <button type="button" data-cmd="whoami">whoami</button>
-                            <button type="button" data-cmd="experience">experience</button>
-                            <button type="button" data-cmd="skills">skills</button>
-                            <button type="button" data-cmd="certs">certs</button>
-                            <button type="button" data-cmd="projects">projects</button>
-                            <button type="button" data-cmd="contact">contact</button>
-                            <button type="button" data-cmd="clear">clear</button>
-                        </div>
+                    <div class="terminal__log" data-term-log role="log" aria-live="polite" aria-label="Terminal output"></div>
+                    <form class="terminal__form" data-term-form hidden>
+                        <span class="t-prompt" aria-hidden="true">$</span>
+                        <span class="sr-only" id="term-label">Terminal. Type a command such as help, or dig followed by a domain, then press Enter.</span>
+                        <input id="term-input" class="terminal__input" type="text" name="command"
+                            aria-labelledby="term-label" autocomplete="off" autocapitalize="off"
+                            autocorrect="off" spellcheck="false" enterkeyhint="go" maxlength="96">
+                    </form>
+                </div>
+                <div class="terminal__chips" data-term-chips hidden>
+                    <p class="terminal__hint">Type a command, or tap one:</p>
+                    <div class="terminal__chiprow">
+                        <button type="button" data-cmd="help">help</button>
+                        <button type="button" data-cmd="dig github.com mx">dig github.com mx</button>
+                        <button type="button" data-cmd="whoami">whoami</button>
+                        <button type="button" data-cmd="experience">experience</button>
+                        <button type="button" data-cmd="projects">projects</button>
+                        <button type="button" data-cmd="contact">contact</button>
+                        <button type="button" data-cmd="clear">clear</button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Proof ticker -->
-        <div class="proof" aria-labelledby="proof-label">
-            <p class="sr-only" id="proof-label">Experience with</p>
-            <div class="proof__track" data-marquee>
-                <ul class="proof__list">
-                    <li><span class="proof__tag" aria-hidden="true">Experience with</span></li>
-                    <li>Team Internet Group</li>
-                    <li>Greenpeace</li>
-                    <li>European XFEL</li>
-                    <li>Zendesk</li>
-                    <li><em>ITIL 4</em></li>
-                </ul>
-                <ul class="proof__list" aria-hidden="true">
-                    <li><span class="proof__tag">Experience with</span></li>
-                    <li>Team Internet Group</li>
-                    <li>Greenpeace</li>
-                    <li>European XFEL</li>
-                    <li>Zendesk</li>
-                    <li><em>ITIL 4</em></li>
-                </ul>
-            </div>
-        </div>
-
         <!-- About -->
-        <section id="about" class="section wrap">
-            <header class="sec-head" data-reveal>
-                <span class="sec-num">01</span>
-                <h2>Profile</h2>
-            </header>
-            <div class="profile">
-                <p class="lead" data-reveal>
-                    Technical Support Engineer specialising in DNS infrastructure, domain lifecycle management, and platform-level incident resolution.
+        <section id="about" class="section wrap rail">
+            <h2 class="rail__label">Profile</h2>
+            <div class="rail__body profile">
+                <p class="lead">
+                    Technical Support Engineer specialising in <mark class="hl">DNS infrastructure, domain lifecycle management</mark>, and platform-level incident resolution.
                 </p>
-                <div class="profile__cols" data-stagger>
+                <div class="profile__cols">
                     <p>
                         At Team Internet Group, I troubleshoot domain registration, transfer, and renewal workflows, diagnose DNS misconfigurations (A, CNAME, MX, TXT), and investigate propagation issues using tools like dig and nslookup. I analyse API and system logs, support VIP customers with escalated cases, assist with domain abuse investigations, and collaborate with engineering teams on platform bugs, working with registrar/registry protocols including EPP concepts and domain states.
                     </p>
                     <p>
-                        I am pursuing an <span class="hl">MA: IT Cyber Security</span> at Maria Curie-Skłodowska University, bridging hands-on support with advanced system defense studies.
+                        I am pursuing an <mark class="hl">MA: IT Cyber Security</mark> at Maria Curie-Skłodowska University, bridging hands-on support with advanced system defense studies.
                     </p>
                 </div>
             </div>
         </section>
 
-        <!-- Certifications -->
-        <section id="certifications" class="section wrap">
-            <header class="sec-head" data-reveal>
-                <span class="sec-num">02</span>
-                <h2>Certifications</h2>
-            </header>
-            <ol class="certs" data-stagger>
-                <li>
-                    <div class="cert">
-                        <span class="cert__num" aria-hidden="true">01</span>
-                        <h3>ITIL 4 Foundation</h3>
-                        <p>IT Service Management • ID: GR671843791OB</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="cert">
-                        <span class="cert__num" aria-hidden="true">02</span>
-                        <h3>Google IT Support Professional</h3>
-                        <p>Issued Jun 2023 • ID: FCG2ZA2F72TN</p>
-                    </div>
-                </li>
-                <li>
-                    <a href="https://www.credly.com/users/owusu-debrah-boateng/badges" target="_blank" rel="noopener noreferrer" class="cert cert--link">
-                        <span class="cert__num" aria-hidden="true">03</span>
-                        <h3>Network Technician Career Path</h3>
-                        <p>Cisco • Issued Feb 2026</p>
-                        <span class="cert__arrow" aria-hidden="true">↗</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.credly.com/users/owusu-debrah-boateng/badges" target="_blank" rel="noopener noreferrer" class="cert cert--link">
-                        <span class="cert__num" aria-hidden="true">04</span>
-                        <h3>Introduction to Cybersecurity</h3>
-                        <p>Cisco • Issued Dec 2025</p>
-                        <span class="cert__arrow" aria-hidden="true">↗</span>
-                    </a>
-                </li>
-            </ol>
-        </section>
+        <!-- Selected Work -->
+        <section id="projects" class="section wrap rail">
+            <h2 class="rail__label">Selected Work</h2>
+            <div class="rail__body work">
 
-        <!-- Experience: a sideways spread -->
-        <section id="experience" class="section section--exp">
-            <header class="sec-head wrap" data-reveal>
-                <span class="sec-num">03</span>
-                <h2>Experience</h2>
-                <p class="sec-hint" aria-hidden="true">Scroll sideways →</p>
-            </header>
-            <div class="exp" data-exp>
-                <div class="exp__sticky">
-                    <ol class="exp__track" data-exp-track>
-                        <li class="role">
-                            <span class="role__year" aria-hidden="true">2026</span>
-                            <p class="role__date">Apr 2026 – Present</p>
-                            <div class="role__body">
-                                <h3>Technical Support Engineer</h3>
-                                <p class="role__org">Team Internet Group · Domains &amp; DNS Infrastructure</p>
-                                <ul>
-                                    <li>Troubleshoot domain lifecycle issues including registration, transfer, and renewal workflows.</li>
-                                    <li>Diagnose DNS misconfigurations (A, CNAME, MX, TXT records) and investigate propagation issues using dig and nslookup.</li>
-                                    <li>Analyse API and system logs to resolve platform-level incidents, applying EPP concepts and domain state knowledge.</li>
-                                    <li>Assist with domain abuse investigations involving phishing, spam, impersonation, suspicious activity, and policy-related reports.</li>
-                                    <li>Support VIP customers with escalated technical cases and collaborate with engineering teams to track and resolve platform bugs.</li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="role">
-                            <span class="role__year" aria-hidden="true">2023</span>
-                            <p class="role__date">Jan 2023 – Sep 2024</p>
-                            <div class="role__body">
-                                <h3>Technical Support</h3>
-                                <p class="role__org">Greenpeace Deutschland</p>
-                                <ul>
-                                    <li>Diagnosed and resolved technical issues for end-users across digital infrastructure.</li>
-                                    <li>Logged and tracked user-reported bugs, ensuring prompt escalation and documentation.</li>
-                                    <li>Analyzed user behavior data to recommend reliability and system improvements.</li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="role">
-                            <span class="role__year" aria-hidden="true">2019</span>
-                            <p class="role__date">May 2019 – Dec 2023</p>
-                            <div class="role__body">
-                                <h3>Foreign Language Tech Support Assistant</h3>
-                                <p class="role__org">European XFEL</p>
-                                <ul>
-                                    <li>Managed website and internal display updates for accurate information distribution.</li>
-                                    <li>Provided multi-channel helpdesk support (Phone, Email, In-person).</li>
-                                    <li>Administered user accounts, databases, and digital records.</li>
-                                    <li>Authored user manuals, troubleshooting guides, and FAQs.</li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ol>
+                <article class="project project--feature">
+                    <div class="project__head">
+                        <p class="project__kicker">Open-source DNS &amp; domain diagnostics</p>
+                        <h3>DomainProbe</h3>
+                    </div>
+                    <p class="project__text">
+                        A terminal toolkit I built for support triage, incident reports, and fast domain analysis. It covers DNS, web, mail, and registrar checks, runs as an interactive menu or a scriptable CLI, and can produce a ticket-ready summary.
+                    </p>
+                    <dl class="facts">
+                        <div><dt>15</dt><dd>DNS record types</dd></div>
+                        <div><dt>9</dt><dd>resolvers for propagation checks</dd></div>
+                        <div><dt>24</dt><dd>EPP status codes decoded</dd></div>
+                        <div><dt>18</dt><dd>DNSBLs for blacklist checks</dd></div>
+                    </dl>
+                    <pre class="snippet"><code><span class="t-prompt">$</span> python3 domainprobe.py diagnose-email example.com
+<span class="snippet__note"># SPF (recursive), DMARC, DKIM, MX reachability, RBL checks</span></code></pre>
+                    <div class="project__foot">
+                        <ul class="chips chips--small">
+                            <li class="chip">Python</li>
+                            <li class="chip">DNS</li>
+                            <li class="chip">CLI</li>
+                        </ul>
+                        <a href="https://github.com/PushDream/domainprobe" target="_blank" rel="noopener noreferrer" class="text-link">View on GitHub ↗</a>
+                    </div>
+                </article>
+
+                <div class="work__pair">
+                    <article class="project">
+                        <div class="project__head">
+                            <p class="project__kicker">Reliability &amp; Incident Thinking</p>
+                            <h3>MoodPlant</h3>
+                        </div>
+                        <p class="project__text">
+                            Backend integration and system-state work framed around the support questions that matter in production: what changed, what failed, and how incidents can be prevented earlier.
+                        </p>
+                        <div class="project__foot">
+                            <ul class="chips chips--small">
+                                <li class="chip">Firebase</li>
+                                <li class="chip">Troubleshooting</li>
+                            </ul>
+                            <a href="https://moodplant.app" target="_blank" rel="noopener noreferrer" class="text-link">Visit Live Site ↗</a>
+                        </div>
+                    </article>
+
+                    <article class="project">
+                        <div class="project__head">
+                            <p class="project__kicker">Trust &amp; Security Research</p>
+                            <h3>Subverse</h3>
+                        </div>
+                        <p class="project__text">
+                            Research into adversarial trust, perception, and automated content generation, with emphasis on how people evaluate signals, credibility, and security risk online.
+                        </p>
+                        <div class="project__foot">
+                            <ul class="chips chips--small">
+                                <li class="chip">Security Ethics</li>
+                                <li class="chip">Research</li>
+                            </ul>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
 
+        <!-- Experience -->
+        <section id="experience" class="section wrap rail">
+            <h2 class="rail__label">Experience</h2>
+            <ol class="rail__body roles">
+                <li class="role role--current">
+                    <p class="role__date">Apr 2026 – <mark class="hl">Present</mark></p>
+                    <div class="role__body">
+                        <h3>Technical Support Engineer</h3>
+                        <p class="role__org">Team Internet Group · Domains &amp; DNS Infrastructure</p>
+                        <ul>
+                            <li>Troubleshoot domain lifecycle issues including registration, transfer, and renewal workflows.</li>
+                            <li>Diagnose DNS misconfigurations (A, CNAME, MX, TXT records) and investigate propagation issues using dig and nslookup.</li>
+                            <li>Analyse API and system logs to resolve platform-level incidents, applying EPP concepts and domain state knowledge.</li>
+                            <li>Assist with domain abuse investigations involving phishing, spam, impersonation, suspicious activity, and policy-related reports.</li>
+                            <li>Support VIP customers with escalated technical cases and collaborate with engineering teams to track and resolve platform bugs.</li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="role">
+                    <p class="role__date">Jan 2023 – Sep 2024</p>
+                    <div class="role__body">
+                        <h3>Technical Support</h3>
+                        <p class="role__org">Greenpeace Deutschland</p>
+                        <ul>
+                            <li>Diagnosed and resolved technical issues for end-users across digital infrastructure.</li>
+                            <li>Logged and tracked user-reported bugs, ensuring prompt escalation and documentation.</li>
+                            <li>Analyzed user behavior data to recommend reliability and system improvements.</li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="role">
+                    <p class="role__date">May 2019 – Dec 2023</p>
+                    <div class="role__body">
+                        <h3>Foreign Language Tech Support Assistant</h3>
+                        <p class="role__org">European XFEL</p>
+                        <ul>
+                            <li>Managed website and internal display updates for accurate information distribution.</li>
+                            <li>Provided multi-channel helpdesk support (Phone, Email, In-person).</li>
+                            <li>Administered user accounts, databases, and digital records.</li>
+                            <li>Authored user manuals, troubleshooting guides, and FAQs.</li>
+                        </ul>
+                    </div>
+                </li>
+            </ol>
+        </section>
+
         <!-- Toolkit & Education -->
-        <section id="skills" class="section wrap">
-            <header class="sec-head" data-reveal>
-                <span class="sec-num">04</span>
-                <h2>Technical Toolkit</h2>
-            </header>
-            <div class="toolkit">
+        <section id="skills" class="section wrap rail">
+            <h2 class="rail__label">Technical Toolkit</h2>
+            <div class="rail__body toolkit">
                 <div class="toolkit__groups">
-                    <div class="chip-group" data-chips>
+                    <div class="chip-group">
                         <h3 class="eyebrow">DNS &amp; Domains</h3>
                         <ul class="chips">
                             <li class="chip chip--hot">DNS Troubleshooting (A, CNAME, MX, TXT)</li>
@@ -435,7 +397,7 @@
                             <li class="chip chip--hot">Domain Abuse Investigation</li>
                         </ul>
                     </div>
-                    <div class="chip-group" data-chips>
+                    <div class="chip-group">
                         <h3 class="eyebrow">Incident &amp; Escalation</h3>
                         <ul class="chips">
                             <li class="chip">IT Support &amp; Incident Handling</li>
@@ -445,7 +407,7 @@
                             <li class="chip">VIP Customer Support</li>
                         </ul>
                     </div>
-                    <div class="chip-group" data-chips>
+                    <div class="chip-group">
                         <h3 class="eyebrow">Security-Aware Investigation</h3>
                         <ul class="chips">
                             <li class="chip">Phishing &amp; Spam Reports</li>
@@ -454,7 +416,7 @@
                             <li class="chip">Linux Systems (Academic Exposure)</li>
                         </ul>
                     </div>
-                    <div class="chip-group" data-chips>
+                    <div class="chip-group">
                         <h3 class="eyebrow">Customer &amp; Documentation</h3>
                         <ul class="chips">
                             <li class="chip">Technical Documentation</li>
@@ -465,12 +427,13 @@
                     </div>
                 </div>
 
-                <aside class="academic" data-reveal>
+                <aside class="academic">
                     <h3 class="academic__title">Academic Path</h3>
                     <ol class="academic__list">
                         <li class="academic__item academic__item--current">
                             <h4>MA: IT Cyber Security</h4>
                             <p>UMCS Lublin • Oct 2025 – Present</p>
+                            <p class="academic__thesis">Thesis: the security of kernel-level software.</p>
                         </li>
                         <li class="academic__item">
                             <h4>Bachelor of Arts: Digital Media</h4>
@@ -485,84 +448,57 @@
             </div>
         </section>
 
-        <!-- Selected Work -->
-        <section id="projects" class="section wrap">
-            <header class="sec-head" data-reveal>
-                <span class="sec-num">05</span>
-                <h2>Selected Work</h2>
-            </header>
-
-            <div class="work">
-                <article class="project" data-reveal>
-                    <span class="project__num" aria-hidden="true">A</span>
-                    <div class="project__main">
-                        <p class="project__kicker">Reliability &amp; Incident Thinking</p>
-                        <h3>MoodPlant</h3>
+        <!-- Certifications -->
+        <section id="certifications" class="section wrap rail">
+            <h2 class="rail__label">Certifications</h2>
+            <ul class="rail__body certs">
+                <li>
+                    <div class="cert">
+                        <h3>ITIL 4 Foundation</h3>
+                        <p>IT Service Management • ID: GR671843791OB</p>
                     </div>
-                    <div class="project__side">
-                        <p class="project__text">
-                            Backend integration and system-state work framed around the support questions that matter in production: what changed, what failed, and how incidents can be prevented earlier.
-                        </p>
-                        <div class="project__foot">
-                            <ul class="chips chips--small">
-                                <li class="chip">Firebase</li>
-                                <li class="chip">Troubleshooting</li>
-                            </ul>
-                            <a href="https://moodplant.app" target="_blank" rel="noopener noreferrer" class="text-link">
-                                Visit Live Site
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M9 7h8v8" /></svg>
-                            </a>
-                        </div>
+                </li>
+                <li>
+                    <div class="cert">
+                        <h3>Google IT Support Professional</h3>
+                        <p>Issued Jun 2023 • ID: FCG2ZA2F72TN</p>
                     </div>
-                </article>
-
-                <article class="project" data-reveal>
-                    <span class="project__num" aria-hidden="true">B</span>
-                    <div class="project__main">
-                        <p class="project__kicker">Trust &amp; Security Research</p>
-                        <h3>Subverse</h3>
-                    </div>
-                    <div class="project__side">
-                        <p class="project__text">
-                            Research into adversarial trust, perception, and automated content generation, with emphasis on how people evaluate signals, credibility, and security risk online.
-                        </p>
-                        <div class="project__foot">
-                            <ul class="chips chips--small">
-                                <li class="chip">Security Ethics</li>
-                                <li class="chip">Research</li>
-                            </ul>
-                        </div>
-                    </div>
-                </article>
-            </div>
+                </li>
+                <li>
+                    <a href="https://www.credly.com/users/owusu-debrah-boateng/badges" target="_blank" rel="noopener noreferrer" class="cert cert--link">
+                        <h3>Network Technician Career Path</h3>
+                        <p>Cisco • Issued Feb 2026</p>
+                        <span class="cert__arrow" aria-hidden="true">↗ badge</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.credly.com/users/owusu-debrah-boateng/badges" target="_blank" rel="noopener noreferrer" class="cert cert--link">
+                        <h3>Introduction to Cybersecurity</h3>
+                        <p>Cisco • Issued Dec 2025</p>
+                        <span class="cert__arrow" aria-hidden="true">↗ badge</span>
+                    </a>
+                </li>
+            </ul>
         </section>
 
         <!-- Contact -->
-        <section id="contact" class="section contact">
-            <div class="wrap">
-                <header class="sec-head sec-head--dark" data-reveal>
-                    <span class="sec-num">06</span>
-                    <span class="sec-label">Contact</span>
-                </header>
-                <h2 class="contact__title" data-split>Let's connect.</h2>
-                <div class="contact__grid">
-                    <p class="contact__text" data-reveal>
-                        Open to collaboration, security research discussions, and connecting with others in the DNS, infrastructure, and cybersecurity space.
-                    </p>
-                    <div>
-                        <div class="contact__email" data-reveal>
-                            <a href="mailto:owusutech@gmail.com" class="contact__address">owusutech@gmail.com</a>
-                            <button type="button" class="copy-btn" data-copy="owusutech@gmail.com" aria-label="Copy email address">
-                                <span class="copy-btn__label">Copy</span>
-                            </button>
-                        </div>
-                        <div class="contact__links" data-stagger>
-                            <a href="mailto:owusutech@gmail.com" class="btn btn--primary" data-magnetic>Email Contact</a>
-                            <a href="https://github.com/PushDream" target="_blank" rel="noopener noreferrer" class="btn btn--ghost" data-magnetic>GitHub</a>
-                            <a href="https://www.linkedin.com/in/owusu-boateng/" target="_blank" rel="noopener noreferrer" class="btn btn--ghost" data-magnetic>LinkedIn Profile</a>
-                        </div>
-                    </div>
-                </div>
+        <section id="contact" class="section wrap rail contact">
+            <h2 class="rail__label">Contact</h2>
+            <div class="rail__body">
+                <p class="contact__text">
+                    Open to collaboration, security research discussions, and connecting with others in the DNS, infrastructure, and cybersecurity space.
+                </p>
+                <p class="contact__email">
+                    <a href="mailto:owusutech@gmail.com" class="contact__address">owusutech@gmail.com</a>
+                    <button type="button" class="copy-btn" data-copy="owusutech@gmail.com" aria-label="Copy email address">
+                        <span class="copy-btn__label">Copy</span>
+                    </button>
+                </p>
+                <p class="contact__links">
+                    <a href="mailto:owusutech@gmail.com" class="btn btn--solid">Email Contact</a>
+                    <a href="https://github.com/PushDream" target="_blank" rel="noopener noreferrer" class="btn btn--line">GitHub</a>
+                    <a href="https://www.linkedin.com/in/owusu-boateng/" target="_blank" rel="noopener noreferrer" class="btn btn--line">LinkedIn Profile</a>
+                </p>
                 <p class="sr-status" role="status" aria-live="polite" data-copy-status></p>
             </div>
         </section>
@@ -575,8 +511,6 @@
             <p><a href="techy.html">Techy Mode</a> · <a href="cv.pdf" download>CV (PDF)</a></p>
         </div>
     </footer>
-
-    <div class="cursor" aria-hidden="true" data-cursor></div>
 
 </body>
 </html>
