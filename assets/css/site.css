@@ -21,6 +21,26 @@
 
     --bar: 56px;
     --gutter: 24px;
+    --focus-ring: rgba(23, 99, 63, 0.18);
+
+    color-scheme: light dark;
+}
+
+/* Dark theme, picked automatically from the visitor's system setting. */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #121416;
+        --soft: #1c1f22;
+        --ink: #eceef0;
+        --ink-2: #c4c8cd;
+        --muted: #979da5;
+        --line: #2d3136;
+        --green: #6fd1a0;
+        --green-2: #97e2bb;
+        --marker: rgba(255, 214, 10, 0.3);
+        --err: #ff8f80;
+        --focus-ring: rgba(111, 209, 160, 0.22);
+    }
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -212,7 +232,7 @@ mark.hl {
     flex: 1; min-width: 0; border: 0; outline: 0; background: none; padding: 0;
     font: inherit; color: var(--ink); caret-color: var(--green);
 }
-.terminal:focus-within { box-shadow: 0 0 0 3px rgba(23, 99, 63, 0.18); }
+.terminal:focus-within { box-shadow: 0 0 0 3px var(--focus-ring); }
 .terminal__chips { padding: 12px 14px 14px; border-top: 1px solid var(--line); }
 .terminal__chips[hidden] { display: none; }
 .terminal__hint { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
