@@ -86,6 +86,76 @@ function makeLine(parts, cls = 't-res') {
 const pad = (s, n) => (s.length >= n ? `${s}  ` : s + ' '.repeat(n - s.length));
 const host = (href) => href.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
 
+/* ---------- dig, over DNS-over-HTTPS ---------- */
+
+/* Real lookups, run from the visitor's own browser against public resolvers.
+   Nothing is sent anywhere else, and answers are shown as plain text. */
+const DNS_TYPES = { A: 1, NS: 2, CNAME: 5, SOA: 6, MX: 15, TXT: 16, AAAA: 28, CAA: 257 };
+const DNS_NAMES = Object.fromEntries(Object.entries(DNS_TYPES).map(([k, v]) => [v, k]));
+const RCODES = { 0: 'NOERROR', 1: 'FORMERR', 2: 'SERVFAIL', 3: 'NXDOMAIN', 4: 'NOTIMP', 5: 'REFUSED' };
+const RESOLVERS = [
+    { name: 'Cloudflare', url: (n, t) => `https://cloudflare-dns.com/dns-query?name=${encodeURIComponent(n)}&type=${t}` },
+    { name: 'Google', url: (n, t) => `https://dns.google/resolve?name=${encodeURIComponent(n)}&type=${t}` },
+];
+const DOMAIN_RE = /^(?=.{1,253}$)(?:[a-z0-9_](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z](?:[a-z0-9-]{0,61}[a-z0-9])?$/;
+const err = (msg) => [[{ text: msg, cls: 't-err' }]];
+
+function formatAnswer(name, type, data, ms, via) {
+    const status = RCODES[data.Status] || `RCODE ${data.Status}`;
+    const answers = Array.isArray(data.Answer) ? data.Answer : [];
+    const count = `${answers.length} answer${answers.length === 1 ? '' : 's'}`;
+    const lines = [[{ text: `;; ${type} ${name}  status: ${status}  ${count}  ${ms} ms via ${via}`, cls: 't-dim' }]];
+    if (!answers.length) {
+        lines.push([{ text: status === 'NXDOMAIN' ? ';; that name does not exist.' : `;; no ${type} records for this name.`, cls: 't-dim' }]);
+        return lines;
+    }
+    const rows = answers.map((a) => [a.name || name, String(a.TTL ?? ''), DNS_NAMES[a.type] || `TYPE${a.type}`, String(a.data ?? '')]);
+    const w0 = Math.min(Math.max(...rows.map((r) => r[0].length)), 34);
+    const w1 = Math.max(...rows.map((r) => r[1].length));
+    const w2 = Math.max(...rows.map((r) => r[2].length));
+    rows.forEach((r) => lines.push([
+        { text: pad(r[0], w0 + 1), cls: 't-head' },
+        { text: pad(r[1], w1 + 1), cls: 't-dim' },
+        pad(`IN ${r[2]}`, w2 + 4),
+        r[3],
+    ]));
+    return lines;
+}
+
+async function dig(arg) {
+    const parts = arg.split(/\s+/).filter(Boolean);
+    if (!parts.length) return [[{ text: 'Usage: dig <domain> [type], for example dig example.com mx', cls: 't-dim' }]];
+    let [name, type = 'a'] = parts;
+    if (DNS_TYPES[name.toUpperCase()] && parts[1]) [type, name] = [name, parts[1]];
+    name = name.replace(/^[a-z]+:\/\//, '').replace(/[/?#].*$/, '').replace(/\.$/, '');
+    type = type.toUpperCase();
+    if (!DNS_TYPES[type]) return err(`dig: ${type} is not supported here. Try A, AAAA, CNAME, MX, TXT, NS, SOA or CAA.`);
+    if (!DOMAIN_RE.test(name)) return err(`dig: ${name} does not look like a domain name.`);
+    if (typeof fetch !== 'function') return err('dig: this browser cannot make lookups.');
+
+    for (const resolver of RESOLVERS) {
+        const ctrl = typeof AbortController === 'function' ? new AbortController() : null;
+        const timer = ctrl ? setTimeout(() => ctrl.abort(), 6000) : null;
+        try {
+            const started = performance.now();
+            const res = await fetch(resolver.url(name, type), {
+                headers: { accept: 'application/dns-json' },
+                credentials: 'omit',
+                referrerPolicy: 'no-referrer',
+                signal: ctrl ? ctrl.signal : undefined,
+            });
+            if (!res.ok) continue;
+            const data = await res.json();
+            return formatAnswer(name, type, data, Math.round(performance.now() - started), resolver.name);
+        } catch (e) {
+            /* Try the next resolver. */
+        } finally {
+            if (timer) clearTimeout(timer);
+        }
+    }
+    return err('dig: could not reach a public resolver from this browser.');
+}
+
 /* ---------- Commands ---------- */
 
 function buildCommands(page, api) {
@@ -139,6 +209,10 @@ function buildCommands(page, api) {
                 [{ text: p.name, cls: 't-head' }, `  ${p.kicker}`],
                 ['  ', p.tags.join(' · '), ...(p.href ? ['  ', { text: `${host(p.href)} ↗`, href: p.href }] : [])],
             ]),
+        },
+        dig: {
+            about: 'look up DNS records, e.g. dig example.com mx',
+            run: (arg) => dig(arg),
         },
         contact: {
             about: 'email and profiles',
@@ -239,14 +313,16 @@ export function initTerminal({ motion }) {
         scrollToEnd();
     }
 
-    function run(raw) {
+    function run(raw, { quiet = false } = {}) {
         const value = raw.trim();
         const echo = makeLine([{ text: '$', cls: 't-prompt' }, ` ${value}`], 't-cmd');
         if (!value) { log.append(echo); scrollToEnd(); return; }
 
-        history.push(value);
-        if (history.length > 50) history.shift();
-        cursor = history.length;
+        if (!quiet) {
+            history.push(value);
+            if (history.length > 50) history.shift();
+            cursor = history.length;
+        }
 
         const [word, ...rest] = value.split(/\s+/);
         const { cmds, aliases } = getCommands();
@@ -259,6 +335,20 @@ export function initTerminal({ motion }) {
             return;
         }
         const out = cmd.run(rest.join(' ').toLowerCase());
+        if (out && typeof out.then === 'function') {
+            /* An automatic lookup on page load should not be read aloud. */
+            if (quiet) log.setAttribute('aria-live', 'off');
+            const pending = makeLine([{ text: ';; asking a resolver...', cls: 't-dim' }]);
+            log.append(pending);
+            scrollToEnd();
+            const done = (lines) => {
+                pending.remove();
+                print(lines);
+                if (quiet) log.setAttribute('aria-live', 'polite');
+            };
+            out.then(done, () => done(err('dig: the lookup failed.')));
+            return;
+        }
         if (out.length) print(out); else scrollToEnd();
     }
 
